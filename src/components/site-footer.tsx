@@ -1,28 +1,26 @@
-import { Link } from "@tanstack/react-router";
-
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border bg-primary text-primary-foreground">
       <div className="container-prose grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="font-serif text-2xl">Rapulana Attorneys</p>
+          <p className="text-2xl font-extrabold">Rapulana Attorneys</p>
           <p className="mt-4 max-w-sm text-sm text-primary-foreground/70">
             A boutique South African law firm built on integrity, precision,
             and decades of combined courtroom experience.
           </p>
         </div>
         <div>
-          <p className="eyebrow mb-4">Explore</p>
+          <p className="eyebrow mb-4 text-gold">Explore</p>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
-            <li><Link to="/about" className="hover:text-gold">About</Link></li>
-            <li><Link to="/services" className="hover:text-gold">Services</Link></li>
-            <li><Link to="/team" className="hover:text-gold">Team</Link></li>
-            <li><Link to="/contact" className="hover:text-gold">Contact</Link></li>
-            <li><Link to="/booking" className="hover:text-gold">Book Consultation</Link></li>
+            <li><a href="#about" className="hover:text-gold">About</a></li>
+            <li><a href="#services" className="hover:text-gold">Services</a></li>
+            <li><a href="#team" className="hover:text-gold">Team</a></li>
+            <li><a href="#contact" className="hover:text-gold">Contact</a></li>
+            <li><a href="#booking" className="hover:text-gold">Book Consultation</a></li>
           </ul>
         </div>
         <div>
-          <p className="eyebrow mb-4">Contact</p>
+          <p className="eyebrow mb-4 text-gold">Contact</p>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
             <li>14th Floor, Sandton Central</li>
             <li>Johannesburg, 2196</li>

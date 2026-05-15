@@ -3,11 +3,10 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/team", label: "Team" },
-  { to: "/contact", label: "Contact" },
+  { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
+  { href: "#team", label: "Team" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -16,7 +15,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="container-prose flex h-20 items-center justify-between">
         <Link to="/" className="flex items-baseline gap-2">
-          <span className="font-serif text-2xl font-semibold tracking-tight text-primary">
+          <span className="text-2xl font-extrabold tracking-tight text-primary">
             Rapulana
           </span>
           <span className="eyebrow">Attorneys</span>
@@ -24,22 +23,20 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              activeOptions={{ exact: l.to === "/" }}
-              activeProps={{ className: "text-primary after:scale-x-100" }}
-              className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-gold after:transition-transform"
+            <a
+              key={l.href}
+              href={l.href}
+              className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-secondary after:transition-transform hover:after:scale-x-100"
             >
               {l.label}
-            </Link>
+            </a>
           ))}
-          <Link
-            to="/booking"
-            className="inline-flex items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+          <a
+            href="#booking"
+            className="inline-flex items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
           >
             Book a Consultation
-          </Link>
+          </a>
         </nav>
 
         <button
@@ -56,22 +53,22 @@ export function SiteHeader() {
         <div className="border-t border-border md:hidden">
           <div className="container-prose flex flex-col gap-4 py-6">
             {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
+              <a
+                key={l.href}
+                href={l.href}
                 onClick={() => setOpen(false)}
                 className="text-base font-medium text-foreground"
               >
                 {l.label}
-              </Link>
+              </a>
             ))}
-            <Link
-              to="/booking"
+            <a
+              href="#booking"
               onClick={() => setOpen(false)}
-              className="inline-flex w-fit items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
+              className="inline-flex w-fit items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
             >
               Book a Consultation
-            </Link>
+            </a>
           </div>
         </div>
       )}
