@@ -3,7 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import {
   ArrowRight, Scale, Shield, Gavel, Briefcase, Home, Users, FileText, Building2,
-  Mail, Phone, MapPin, Clock, CheckCircle2, Wallet,
+  Mail, Phone, MapPin, Clock, CheckCircle2, Wallet, Lightbulb, Coins,
 } from "lucide-react";
 import heroLaptop from "@/assets/hero-laptop.jpg";
 import teamMeeting from "@/assets/team-meeting.jpg";
@@ -23,12 +23,53 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { icon: Briefcase, title: "Corporate & Commercial", desc: "M&A, structuring, shareholder agreements and commercial contracts." },
-  { icon: Gavel, title: "Litigation & Disputes", desc: "High Court litigation, arbitration, mediation and CCMA representation." },
-  { icon: Home, title: "Family & Matrimonial", desc: "Divorce, ANCs, custody and maintenance — handled with discretion." },
-  { icon: FileText, title: "Wills, Trusts & Estates", desc: "Estate planning, will drafting, trust formation and administration." },
-  { icon: Building2, title: "Property & Conveyancing", desc: "Transfers, bond registration, sectional title and lease agreements." },
-  { icon: Users, title: "Labour & Employment", desc: "Employment contracts, retrenchments, disciplinary and policy advisory." },
+  {
+    icon: Lightbulb,
+    title: "Intellectual Property",
+    desc: "We help companies and businesses protect their ideas and brands.",
+    items: ["Trademarks", "Copyrights", "Patents", "Designs"],
+  },
+  {
+    icon: Gavel,
+    title: "Civil Litigation",
+    desc: "Effective and efficient legal solutions across the courts.",
+    items: [
+      "Magistrate Court and High Court appearances",
+      "Dispute resolution",
+      "Review applications for PAJA and PAIA",
+      "Instituting and defending legal actions (summons)",
+      "Instituting and opposing legal motion applications",
+    ],
+  },
+  {
+    icon: Briefcase,
+    title: "Corporate & Commercial",
+    desc: "Agreements, contracts and corporate advisory.",
+    items: [
+      "Commercial and contract drafting and reviewing",
+      "Company registrations",
+      "Legal opinions",
+      "Corporate structuring",
+      "Competition",
+      "Company secretarial services",
+    ],
+  },
+  {
+    icon: FileText,
+    title: "Trusts & Estate Planning",
+    desc: "Sound legal assistance for proper estate planning.",
+    items: [
+      "Drafting of wills",
+      "Registration and amendment of trusts",
+      "Aligning estate planning with business interests",
+    ],
+  },
+  {
+    icon: Coins,
+    title: "Legal Collections",
+    desc: "We assist with the recovery of funds through letters of demand and legal action in both the Magistrate and High Courts.",
+    items: [],
+  },
 ];
 
 const team = [
@@ -165,11 +206,21 @@ function HomePage() {
             </h2>
           </div>
           <div className="mt-14 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
-            {services.map(({ icon: Icon, title, desc }) => (
-              <article key={title} className="bg-background p-10 transition hover:bg-secondary/5">
+            {services.map(({ icon: Icon, title, desc, items }) => (
+              <article key={title} className="flex flex-col bg-background p-10 transition hover:bg-secondary/5">
                 <Icon className="h-9 w-9 text-secondary" strokeWidth={1.5} />
                 <h3 className="mt-6 text-2xl text-primary">{title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{desc}</p>
+                {items.length > 0 && (
+                  <ul className="mt-5 space-y-2 text-sm text-foreground/80">
+                    {items.map((it) => (
+                      <li key={it} className="flex items-start gap-2">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-secondary" strokeWidth={1.75} />
+                        <span>{it}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </article>
             ))}
           </div>
