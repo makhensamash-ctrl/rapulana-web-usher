@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logoDark from "@/assets/logo-dark.jpeg";
 
 const links = [
   { href: "#about", label: "About" },
@@ -14,11 +15,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="container-prose flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-baseline gap-2">
-          <span className="text-2xl font-extrabold tracking-tight text-primary">
-            Rapulana
-          </span>
-          <span className="eyebrow">Attorneys</span>
+        <Link to="/" className="flex items-center gap-3" aria-label="Rapulana Attorneys home">
+          <img src={logoDark} alt="Rapulana Attorneys logo" className="h-12 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
