@@ -251,27 +251,50 @@ function HomePage() {
           <div className="max-w-2xl">
             <p className="eyebrow">Our People</p>
             <h2 className="mt-3 text-4xl text-primary md:text-5xl">
-              A small bench of senior attorneys you'll actually meet.
+              Meet the attorney behind Rapulana.
             </h2>
           </div>
-          <div className="mt-14 grid gap-12 md:grid-cols-3">
-            {team.map((m) => (
-              <article key={m.name} className="group">
-                <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
-                  <img
-                    src={m.img}
-                    alt={`Portrait of ${m.name}`}
-                    width={800}
-                    height={1000}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  />
+          <div className="mt-14 grid gap-12 md:grid-cols-12 md:items-start">
+            <div className="md:col-span-5">
+              <div className="aspect-[2/3] overflow-hidden rounded-sm bg-muted shadow-md">
+                <img
+                  src={rethabilePortrait2}
+                  alt="Portrait of Rethabile Rapulana"
+                  width={940}
+                  height={1410}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-7">
+              <p className="eyebrow">Founder & Principal Attorney</p>
+              <h3 className="mt-2 text-3xl text-primary md:text-4xl">Rethabile Rapulana</h3>
+              <p className="mt-5 text-lg text-muted-foreground">
+                Rethabile Rapulana is an admitted attorney with experience in
+                Intellectual Property Law and Commercial Law. Her experience
+                includes working with business owners, entrepreneurs and
+                individuals on contracts and agreements, trade marks and
+                copyrights, commercial law, civil litigation and estate planning.
+              </p>
+
+              <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                <div className="rounded-sm border border-border bg-background p-5">
+                  <p className="eyebrow text-secondary">Qualifications</p>
+                  <ul className="mt-3 space-y-2 text-sm text-foreground/80">
+                    <li>B.Com Law (UFS)</li>
+                    <li>B.Com (Hons) Financial Economics &amp; Investment Management (UFS)</li>
+                    <li>LLB (Unisa)</li>
+                  </ul>
                 </div>
-                <p className="eyebrow mt-6">{m.role}</p>
-                <h3 className="mt-2 text-2xl text-primary">{m.name}</h3>
-                <p className="mt-3 text-muted-foreground">{m.bio}</p>
-              </article>
-            ))}
+                <div className="rounded-sm border border-border bg-background p-5">
+                  <p className="eyebrow text-secondary">Professional Designation</p>
+                  <p className="mt-3 text-sm text-foreground/80">
+                    Admitted Attorney with Right of Appearance in the High Court of South Africa.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
