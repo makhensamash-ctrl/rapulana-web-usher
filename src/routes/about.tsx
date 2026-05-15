@@ -46,7 +46,7 @@ function AboutPage() {
         <aside className="md:col-span-5">
           <img
             src={fileClipboard}
-            alt="Hand signing a legal document with a fountain pen"
+            alt="Rapulana Attorneys letterhead on a clipboard"
             width={1600}
             height={1024}
             loading="lazy"

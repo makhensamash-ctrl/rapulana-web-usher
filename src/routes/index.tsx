@@ -21,7 +21,7 @@ function HomePage() {
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <img
           src={heroLaptop}
-          alt="Modern corporate office building at blue hour"
+          alt="Laptop displaying Rapulana Attorneys website on a desk with city view"
           width={1920}
           height={1280}
           className="absolute inset-0 h-full w-full object-cover opacity-40"
