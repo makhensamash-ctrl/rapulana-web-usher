@@ -8,6 +8,7 @@ import {
 import heroLaptop from "@/assets/hero-laptop.jpg";
 import teamMeeting from "@/assets/team-meeting.jpg";
 import fileClipboard from "@/assets/file-clipboard.jpg";
+import rethabilePortrait from "@/assets/rethabile-rapulana.jpeg";
 import t1 from "@/assets/team-1.jpg";
 import t2 from "@/assets/team-2.jpg";
 import t3 from "@/assets/team-3.jpg";
@@ -184,14 +185,18 @@ function HomePage() {
             </div>
           </div>
           <aside className="md:col-span-5">
-            <img
-              src={fileClipboard}
-              alt="Rapulana Attorneys letterhead on a clipboard"
-              width={1500}
-              height={1050}
-              loading="lazy"
-              className="w-full rounded-sm object-cover shadow-md"
-            />
+            <div className="overflow-hidden rounded-sm bg-muted shadow-md">
+              <img
+                src={rethabilePortrait}
+                alt="Portrait of Rethabile Rapulana, founder of Rapulana Attorneys"
+                width={940}
+                height={1410}
+                loading="lazy"
+                className="aspect-[2/3] w-full object-cover"
+              />
+            </div>
+            <p className="mt-4 text-sm font-semibold text-primary">Rethabile Rapulana</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Founder & Principal Attorney</p>
           </aside>
         </div>
       </section>
@@ -199,11 +204,23 @@ function HomePage() {
       {/* SERVICES */}
       <section id="services" className="scroll-mt-24">
         <div className="container-prose py-24">
-          <div className="max-w-2xl">
-            <p className="eyebrow">Practice Areas</p>
-            <h2 className="mt-3 text-4xl text-primary md:text-5xl">
-              Comprehensive counsel across the matters that matter most.
-            </h2>
+          <div className="grid items-end gap-10 md:grid-cols-12">
+            <div className="md:col-span-7">
+              <p className="eyebrow">Practice Areas</p>
+              <h2 className="mt-3 text-4xl text-primary md:text-5xl">
+                Comprehensive counsel across the matters that matter most.
+              </h2>
+            </div>
+            <div className="md:col-span-5">
+              <img
+                src={fileClipboard}
+                alt="Rapulana Attorneys letterhead on a clipboard"
+                width={1500}
+                height={1050}
+                loading="lazy"
+                className="aspect-[4/3] w-full rounded-sm object-cover shadow-md"
+              />
+            </div>
           </div>
           <div className="mt-14 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
             {services.map(({ icon: Icon, title, desc, items }) => (
