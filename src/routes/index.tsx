@@ -3,7 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import {
   ArrowRight, Scale, Shield, Gavel, Briefcase, Home, Users, FileText, Building2,
-  Mail, Phone, MapPin, Clock, CheckCircle2,
+  Mail, Phone, MapPin, Clock, CheckCircle2, Wallet,
 } from "lucide-react";
 import heroLaptop from "@/assets/hero-laptop.jpg";
 import teamMeeting from "@/assets/team-meeting.jpg";
@@ -98,33 +98,48 @@ function HomePage() {
           <div className="md:col-span-7">
             <p className="eyebrow">About Us</p>
             <h2 className="mt-3 text-4xl text-primary md:text-5xl">
-              The partner you meet is the partner who handles your matter.
+              A vibrant law firm partnering with businesses and entrepreneurs.
             </h2>
             <div className="mt-8 space-y-5 text-lg text-muted-foreground">
               <p>
-                Founded in Johannesburg in 2008, Rapulana Attorneys is a
-                boutique firm built on a simple thesis: senior counsel
-                should be accessible, transparent, and unwaveringly
-                principled.
-              </p>
-              <p>
-                For over fifteen years we have advised entrepreneurs,
-                family offices, listed corporates and private individuals
-                across South Africa and the SADC region — from the
-                boardroom to the courtroom.
+                Rapulana Attorneys is a vibrant law firm led by{" "}
+                <span className="font-semibold text-primary">Rethabile Rapulana</span>.
+                The firm operates with a vision to serve businesses and
+                entrepreneurs by providing appropriate and effective legal
+                solutions of high quality.
               </p>
             </div>
-            <div className="mt-10 grid grid-cols-3 gap-6">
-              {[
-                { k: "15+", v: "Years in practice" },
-                { k: "400+", v: "Matters resolved" },
-                { k: "98%", v: "Client retention" },
-              ].map((s) => (
-                <div key={s.v}>
-                  <p className="text-4xl font-extrabold text-secondary md:text-5xl">{s.k}</p>
-                  <p className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{s.v}</p>
-                </div>
-              ))}
+
+            <div className="mt-10">
+              <p className="eyebrow text-secondary">Our Approach</p>
+              <div className="mt-6 grid gap-6 sm:grid-cols-3">
+                {[
+                  {
+                    icon: Users,
+                    title: "Partnership",
+                    desc: "We are committed to partnering with our clients and walking alongside each one in building impactful businesses.",
+                  },
+                  {
+                    icon: Wallet,
+                    title: "Transparent Fees",
+                    desc: "We aim to eliminate the anxiety of unexpected legal costs through clear, transparent fee structures.",
+                  },
+                  {
+                    icon: Scale,
+                    title: "Sound Counsel",
+                    desc: "We are equipped to adequately and appropriately advise our clients with sound legal solutions for all their needs.",
+                  },
+                ].map(({ icon: Icon, title, desc }) => (
+                  <div
+                    key={title}
+                    className="rounded-sm border border-border bg-background p-6"
+                  >
+                    <Icon className="h-8 w-8 text-secondary" strokeWidth={1.5} />
+                    <h3 className="mt-4 text-lg font-semibold text-primary">{title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <aside className="md:col-span-5">
