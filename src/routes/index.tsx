@@ -111,22 +111,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* INTRO TILES */}
-      <section className="container-prose py-20">
-        <div className="grid gap-8 md:grid-cols-3">
-          {[
-            { icon: Scale, title: "Partner-led", text: "Every matter is handled by a senior partner. No layers, no hand-offs." },
-            { icon: Shield, title: "Confidential", text: "Discreet, privileged counsel from first call to final resolution." },
-            { icon: Gavel, title: "Battle-tested", text: "Decades of combined courtroom and boardroom experience." },
-          ].map(({ icon: Icon, title, text }) => (
-            <article key={title} className="border-t border-border pt-8">
-              <Icon className="h-8 w-8 text-secondary" strokeWidth={1.5} />
-              <h3 className="mt-6 text-2xl text-primary">{title}</h3>
-              <p className="mt-3 text-muted-foreground">{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+
 
       {/* ABOUT */}
       <section id="about" className="scroll-mt-24 border-y border-border bg-secondary/5">
