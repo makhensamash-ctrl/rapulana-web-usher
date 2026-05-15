@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -6,8 +6,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-serif: "Cormorant Garamond", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-sans: "Red Hat Display", system-ui, sans-serif;
+  --font-serif: "Red Hat Display", system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -35,41 +35,58 @@
   --color-ring: var(--ring);
   --color-gold: var(--gold);
   --color-gold-foreground: var(--gold-foreground);
+  --color-taupe: var(--taupe);
+  --color-teal: var(--teal);
+  --color-sky: var(--sky);
+  --color-midnight: var(--midnight);
 }
 
 :root {
-  --radius: 0.25rem;
-  /* Ivory paper */
-  --background: oklch(0.985 0.005 85);
-  --foreground: oklch(0.18 0.02 250);
+  --radius: 0.375rem;
+
+  /* Brand — Rapulana Attorneys */
+  /* Warm Taupe #C2B2A3 */
+  --taupe: oklch(0.755 0.022 60);
+  /* Deep Teal #13566C */
+  --teal: oklch(0.435 0.062 220);
+  /* Sky Blue #8CBFD9 */
+  --sky: oklch(0.78 0.061 235);
+  /* Ivory White #FDF7F2 */
+  /* Midnight Blue #00394D */
+  --midnight: oklch(0.31 0.054 230);
+
+  /* Light: Ivory background, Midnight text */
+  --background: oklch(0.985 0.006 70);
+  --foreground: oklch(0.31 0.054 230);
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 250);
+  --card-foreground: oklch(0.31 0.054 230);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 250);
+  --popover-foreground: oklch(0.31 0.054 230);
 
-  /* Deep navy */
-  --primary: oklch(0.22 0.06 255);
-  --primary-foreground: oklch(0.98 0.005 85);
+  /* Primary = Midnight Blue (Dark) for strong CTAs */
+  --primary: oklch(0.31 0.054 230);
+  --primary-foreground: oklch(0.985 0.006 70);
 
-  --secondary: oklch(0.95 0.01 85);
-  --secondary-foreground: oklch(0.22 0.06 255);
+  /* Secondary = Deep Teal */
+  --secondary: oklch(0.435 0.062 220);
+  --secondary-foreground: oklch(0.985 0.006 70);
 
-  --muted: oklch(0.94 0.008 85);
-  --muted-foreground: oklch(0.45 0.02 250);
+  --muted: oklch(0.94 0.012 60);
+  --muted-foreground: oklch(0.48 0.04 225);
 
-  --accent: oklch(0.93 0.02 85);
-  --accent-foreground: oklch(0.22 0.06 255);
+  --accent: oklch(0.78 0.061 235);
+  --accent-foreground: oklch(0.31 0.054 230);
 
-  /* Brushed gold */
-  --gold: oklch(0.72 0.12 80);
-  --gold-foreground: oklch(0.18 0.02 250);
+  /* "Gold" slot replaced by brand Warm Taupe accent */
+  --gold: oklch(0.755 0.022 60);
+  --gold-foreground: oklch(0.31 0.054 230);
 
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.88 0.01 85);
-  --input: oklch(0.88 0.01 85);
-  --ring: oklch(0.72 0.12 80);
+  --border: oklch(0.88 0.014 60);
+  --input: oklch(0.88 0.014 60);
+  --ring: oklch(0.435 0.062 220);
 }
 
 @layer base {
@@ -80,11 +97,13 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-serif);
-    letter-spacing: -0.01em;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.015em;
   }
 }
 
@@ -98,8 +117,8 @@
 @utility eyebrow {
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-secondary);
 }

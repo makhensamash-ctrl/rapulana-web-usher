@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroBuilding from "@/assets/hero-building.jpg";
+import heroLaptop from "@/assets/hero-laptop.jpg";
 import teamMeeting from "@/assets/team-meeting.jpg";
-import signingPen from "@/assets/signing-pen.jpg";
+import fileClipboard from "@/assets/file-clipboard.jpg";
 import { ArrowRight, Scale, Shield, Gavel } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -20,13 +20,13 @@ function HomePage() {
       {/* HERO */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <img
-          src={heroBuilding}
-          alt="Modern corporate office building at blue hour"
+          src={heroLaptop}
+          alt="Laptop displaying Rapulana Attorneys website on a desk with city view"
           width={1920}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
+          className="absolute inset-0 h-full w-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-primary/20" />
         <div className="container-prose relative grid gap-10 py-28 md:grid-cols-12 md:py-40">
           <div className="md:col-span-8">
             <p className="eyebrow">Est. 2008 · Johannesburg</p>
@@ -139,7 +139,7 @@ function HomePage() {
       <section className="container-prose py-24">
         <div className="relative overflow-hidden rounded-sm bg-primary p-12 text-primary-foreground md:p-20">
           <img
-            src={signingPen}
+            src={fileClipboard}
             alt=""
             width={1600}
             height={1024}
