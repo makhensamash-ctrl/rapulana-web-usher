@@ -24,9 +24,9 @@ function HomePage() {
           alt="Laptop displaying Rapulana Attorneys website on a desk with city view"
           width={1920}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
+          className="absolute inset-0 h-full w-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-primary/20" />
         <div className="container-prose relative grid gap-10 py-28 md:grid-cols-12 md:py-40">
           <div className="md:col-span-8">
             <p className="eyebrow">Est. 2008 · Johannesburg</p>
