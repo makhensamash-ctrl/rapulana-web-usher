@@ -1,10 +1,12 @@
+import logoLight from "@/assets/logo-light.jpeg";
+
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border bg-primary text-primary-foreground">
       <div className="container-prose grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="text-2xl font-extrabold">Rapulana Attorneys</p>
-          <p className="mt-4 max-w-sm text-sm text-primary-foreground/70">
+          <img src={logoLight} alt="Rapulana Attorneys logo" className="h-20 w-auto rounded-sm" />
+          <p className="mt-6 max-w-sm text-sm text-primary-foreground/70">
             A boutique South African law firm built on integrity, precision,
             and decades of combined courtroom experience.
           </p>
