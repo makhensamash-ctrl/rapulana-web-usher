@@ -1,0 +1,80 @@
+import { Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/services", label: "Services" },
+  { to: "/team", label: "Team" },
+  { to: "/contact", label: "Contact" },
+];
+
+export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  return (
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
+      <div className="container-prose flex h-20 items-center justify-between">
+        <Link to="/" className="flex items-baseline gap-2">
+          <span className="font-serif text-2xl font-semibold tracking-tight text-primary">
+            Rapulana
+          </span>
+          <span className="eyebrow">Attorneys</span>
+        </Link>
+
+        <nav className="hidden items-center gap-8 md:flex">
+          {links.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              activeOptions={{ exact: l.to === "/" }}
+              activeProps={{ className: "text-primary after:scale-x-100" }}
+              className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-gold after:transition-transform"
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            to="/booking"
+            className="inline-flex items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+          >
+            Book a Consultation
+          </Link>
+        </nav>
+
+        <button
+          type="button"
+          aria-label="Toggle menu"
+          onClick={() => setOpen((v) => !v)}
+          className="md:hidden text-primary"
+        >
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+
+      {open && (
+        <div className="border-t border-border md:hidden">
+          <div className="container-prose flex flex-col gap-4 py-6">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                className="text-base font-medium text-foreground"
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              to="/booking"
+              onClick={() => setOpen(false)}
+              className="inline-flex w-fit items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
+            >
+              Book a Consultation
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
