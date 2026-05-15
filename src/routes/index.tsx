@@ -9,6 +9,7 @@ import heroLaptop from "@/assets/hero-laptop.jpg";
 import teamMeeting from "@/assets/team-meeting.jpg";
 import fileClipboard from "@/assets/file-clipboard.jpg";
 import rethabilePortrait from "@/assets/rethabile-rapulana.jpeg";
+import rethabilePortrait2 from "@/assets/rethabile-portrait-2.jpeg";
 import t1 from "@/assets/team-1.jpg";
 import t2 from "@/assets/team-2.jpg";
 import t3 from "@/assets/team-3.jpg";
