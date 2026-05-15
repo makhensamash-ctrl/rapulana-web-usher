@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroBuilding from "@/assets/hero-building.jpg";
+import heroLaptop from "@/assets/hero-laptop.jpg";
 import teamMeeting from "@/assets/team-meeting.jpg";
-import signingPen from "@/assets/signing-pen.jpg";
+import fileClipboard from "@/assets/file-clipboard.jpg";
 import { ArrowRight, Scale, Shield, Gavel } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -20,7 +20,7 @@ function HomePage() {
       {/* HERO */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <img
-          src={heroBuilding}
+          src={heroLaptop}
           alt="Modern corporate office building at blue hour"
           width={1920}
           height={1280}
@@ -139,7 +139,7 @@ function HomePage() {
       <section className="container-prose py-24">
         <div className="relative overflow-hidden rounded-sm bg-primary p-12 text-primary-foreground md:p-20">
           <img
-            src={signingPen}
+            src={fileClipboard}
             alt=""
             width={1600}
             height={1024}

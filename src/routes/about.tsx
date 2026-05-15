@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/page-hero";
-import signingPen from "@/assets/signing-pen.jpg";
+import fileClipboard from "@/assets/file-clipboard.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -45,7 +45,7 @@ function AboutPage() {
 
         <aside className="md:col-span-5">
           <img
-            src={signingPen}
+            src={fileClipboard}
             alt="Hand signing a legal document with a fountain pen"
             width={1600}
             height={1024}
