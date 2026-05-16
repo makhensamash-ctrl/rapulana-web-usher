@@ -137,9 +137,9 @@ function BookingPage() {
   if (confirmed) {
     return (
       <section className="container-prose py-24">
-        <div className="mx-auto max-w-2xl rounded-sm border border-secondary/30 bg-secondary/5 p-10 text-center">
+        <div className="mx-auto max-w-2xl rounded-sm border border-secondary/30 bg-secondary/5 p-6 text-center sm:p-10">
           <CheckCircle2 className="mx-auto h-12 w-12 text-secondary" />
-          <h1 className="mt-6 text-4xl text-primary">Booking received</h1>
+          <h1 className="mt-6 text-3xl text-primary sm:text-4xl">Booking received</h1>
           <p className="mt-4 text-muted-foreground">
             Thank you, {confirmed.name}. We've reserved <span className="font-semibold text-primary">{confirmed.date} at {confirmed.time}</span>.
             Our team will email you shortly with payment instructions (R{HOURLY_RATE}) to confirm the consultation.
