@@ -14,9 +14,9 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-      <div className="container-prose flex h-20 items-center justify-between">
+      <div className="container-prose flex h-28 items-center justify-between">
         <Link to="/" className="flex items-center gap-3" aria-label="Rapulana Attorneys home">
-          <img src={logoDark} alt="Rapulana Attorneys logo" className="h-12 w-auto" />
+          <img src={logoDark} alt="Rapulana Attorneys logo" className="h-20 w-auto md:h-24" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
