@@ -1,8 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { z } from "zod";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ArrowRight, Scale, Shield, Gavel, Briefcase, Home, Users, FileText, Building2,
+  Scale, Gavel, Briefcase, Users, FileText,
   Mail, Phone, MapPin, Clock, CheckCircle2, Wallet, Lightbulb, Coins,
 } from "lucide-react";
 import heroLaptop from "@/assets/hero-laptop.jpg";
