@@ -60,13 +60,13 @@ export function SiteHeader() {
                 {l.label}
               </a>
             ))}
-            <a
-              href="#booking"
+            <Link
+              to="/booking"
               onClick={() => setOpen(false)}
               className="inline-flex w-fit items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
             >
               Book a Consultation
-            </a>
+            </Link>
           </div>
         </div>
       )}
