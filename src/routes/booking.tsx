@@ -153,7 +153,7 @@ function BookingPage() {
   }
 
   return (
-    <section className="container-prose py-16 md:py-24">
+    <section className="container-prose w-full max-w-full overflow-x-hidden py-16 md:py-24">
       <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
         <ArrowLeft className="h-4 w-4" /> Back
       </Link>
