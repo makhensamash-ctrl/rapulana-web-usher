@@ -86,7 +86,7 @@ function HomePage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-primary/40 to-transparent" />
-        <div className="container-prose relative py-28 md:py-40" />
+        <div className="container-prose relative py-48 md:py-72" />
       </section>
 
 
