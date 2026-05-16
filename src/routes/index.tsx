@@ -289,8 +289,22 @@ function HomePage() {
       {/* CONTACT */}
       <ContactSection />
 
-      {/* BOOKING */}
-      <BookingSection />
+      {/* BOOKING CTA */}
+      <section id="booking" className="scroll-mt-24">
+        <div className="container-prose py-24 text-center">
+          <p className="eyebrow">Book a Consultation</p>
+          <h2 className="mt-3 text-4xl text-primary md:text-5xl">Ready to talk?</h2>
+          <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
+            Pick a date and time that suits you. One-hour consultations with a senior attorney for R600.
+          </p>
+          <Link
+            to="/booking"
+            className="mt-8 inline-flex items-center justify-center rounded-sm bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+          >
+            Book a Consultation
+          </Link>
+        </div>
+      </section>
     </>
   );
 }
@@ -327,109 +341,3 @@ function ContactSection() {
   );
 }
 
-const schema = z.object({
-  name: z.string().trim().min(2, "Please enter your full name").max(100),
-  email: z.string().trim().email("Please enter a valid email").max(255),
-  phone: z.string().trim().min(7, "Please enter a valid phone number").max(20),
-  service: z.string().min(1, "Please select a practice area"),
-  date: z.string().min(1, "Please choose a preferred date"),
-  time: z.string().min(1, "Please choose a preferred time"),
-  message: z.string().trim().max(1000).optional(),
-});
-
-const serviceOptions = [
-  "Corporate & Commercial",
-  "Litigation & Dispute Resolution",
-  "Family & Matrimonial",
-  "Wills, Trusts & Estates",
-  "Property & Conveyancing",
-  "Labour & Employment",
-  "Other / Not sure",
-];
-
-function BookingSection() {
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitted, setSubmitted] = useState(false);
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    const result = schema.safeParse(data);
-    if (!result.success) {
-      const errs: Record<string, string> = {};
-      for (const issue of result.error.issues) errs[issue.path[0] as string] = issue.message;
-      setErrors(errs);
-      return;
-    }
-    setErrors({});
-    setSubmitted(true);
-  };
-
-  return (
-    <section id="booking" className="scroll-mt-24">
-      <div className="container-prose grid gap-16 py-24 md:grid-cols-12">
-        <div className="md:col-span-4">
-          <p className="eyebrow">Book a Consultation</p>
-          <h2 className="mt-3 text-4xl text-primary md:text-5xl">Tell us about your matter.</h2>
-          <p className="mt-6 text-muted-foreground">
-            Submit the form and a senior attorney will confirm your appointment within one business day. All consultations are strictly confidential.
-          </p>
-        </div>
-
-        <div className="md:col-span-8">
-          {submitted ? (
-            <div className="flex flex-col items-start gap-4 rounded-sm border border-secondary/30 bg-secondary/5 p-10">
-              <CheckCircle2 className="h-10 w-10 text-secondary" />
-              <h3 className="text-3xl text-primary">Thank you.</h3>
-              <p className="text-muted-foreground">
-                Your booking request has been received. A member of the Rapulana team will be in touch within one business day.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={onSubmit} noValidate className="space-y-6 rounded-sm border border-border bg-card p-8 md:p-10">
-              <div className="grid gap-6 md:grid-cols-2">
-                <Field label="Full name" name="name" error={errors.name} />
-                <Field label="Email address" name="email" type="email" error={errors.email} />
-                <Field label="Phone" name="phone" type="tel" error={errors.phone} />
-                <Field label="Practice area" name="service" as="select" options={serviceOptions} error={errors.service} />
-                <Field label="Preferred date" name="date" type="date" error={errors.date} />
-                <Field label="Preferred time" name="time" type="time" error={errors.time} />
-              </div>
-              <Field label="Briefly describe your matter (optional)" name="message" as="textarea" error={errors.message} />
-              <button type="submit" className="inline-flex items-center justify-center rounded-sm bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90">
-                Request Consultation
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-interface FieldProps {
-  label: string;
-  name: string;
-  type?: string;
-  error?: string;
-  as?: "input" | "textarea" | "select";
-  options?: string[];
-}
-
-function Field({ label, name, type = "text", error, as = "input", options }: FieldProps) {
-  const base = "mt-2 w-full rounded-sm border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none ring-ring/30 transition focus:border-secondary focus:ring-2";
-  return (
-    <label className="block text-sm font-semibold text-foreground">
-      {label}
-      {as === "textarea" && <textarea name={name} rows={4} maxLength={1000} className={base} />}
-      {as === "select" && (
-        <select name={name} className={base} defaultValue="">
-          <option value="" disabled>Select…</option>
-          {options?.map((o) => <option key={o} value={o}>{o}</option>)}
-        </select>
-      )}
-      {as === "input" && <input name={name} type={type} className={base} />}
-      {error && <span className="mt-1 block text-xs font-normal text-destructive">{error}</span>}
-    </label>
-  );
-}
