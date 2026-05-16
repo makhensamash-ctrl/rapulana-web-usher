@@ -187,11 +187,11 @@ function BookingPage() {
         </aside>
 
         {/* Picker + form */}
-        <div className="md:col-span-8 space-y-8">
+        <div className="min-w-0 space-y-8 md:col-span-8">
           {/* Date picker */}
-          <div>
+          <div className="min-w-0">
             <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">1. Select a date</h2>
-            <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
+            <div className="mt-4 flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
               {days.map((d) => {
                 const active = d.toDateString() === selectedDate.toDateString();
                 return (
