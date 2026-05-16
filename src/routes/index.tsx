@@ -259,8 +259,8 @@ function HomePage() {
       <section className="container-prose py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <img
-            src={teamMeeting}
-            alt="Attorneys collaborating around a conference table"
+            src={rapulanaLabel}
+            alt="Rapulana Attorneys logo on a business card"
             width={1600}
             height={1024}
             loading="lazy"
