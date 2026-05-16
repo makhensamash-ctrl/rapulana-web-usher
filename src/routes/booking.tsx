@@ -158,11 +158,11 @@ function BookingPage() {
         <ArrowLeft className="h-4 w-4" /> Back
       </Link>
 
-      <div className="mt-6 grid gap-10 md:grid-cols-12">
+      <div className="mt-6 grid gap-8 md:grid-cols-12 md:gap-10">
         {/* Sidebar */}
         <aside className="md:col-span-4">
           <p className="eyebrow">Rapulana Attorneys</p>
-          <h1 className="mt-3 text-3xl text-primary md:text-4xl">Book a Consultation</h1>
+          <h1 className="mt-3 text-3xl text-primary sm:text-4xl">Book a Consultation</h1>
           <div className="mt-6 space-y-4 text-sm text-muted-foreground">
             <div className="flex items-start gap-3">
               <Clock className="mt-0.5 h-5 w-5 text-secondary" />
