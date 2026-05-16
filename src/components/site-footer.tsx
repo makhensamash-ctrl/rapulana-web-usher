@@ -27,7 +27,7 @@ export function SiteFooter() {
             <li>353 Festival Street</li>
             <li>Hatfield, Pretoria</li>
             <li>+27 11 555 0142</li>
-            <li>hello@rapulana.law</li>
+            <li>rethabile@rapulana.co.za</li>
           </ul>
         </div>
       </div>
