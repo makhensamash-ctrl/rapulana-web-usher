@@ -52,14 +52,15 @@ export function SiteHeader() {
         <div className="border-t border-border md:hidden">
           <div className="container-prose flex flex-col gap-4 py-6">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
+              <Link
+                key={l.hash}
+                to="/"
+                hash={l.hash}
                 onClick={() => setOpen(false)}
                 className="text-base font-medium text-foreground"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
             <Link
               to="/booking"
