@@ -4,10 +4,10 @@ import { Menu, X } from "lucide-react";
 import logoDark from "@/assets/logo-dark.jpeg";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#team", label: "Team" },
-  { href: "#contact", label: "Contact" },
+  { hash: "about", label: "About" },
+  { hash: "services", label: "Services" },
+  { hash: "team", label: "Team" },
+  { hash: "contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -21,13 +21,14 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
+            <Link
+              key={l.hash}
+              to="/"
+              hash={l.hash}
               className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-secondary after:transition-transform hover:after:scale-x-100"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
           <Link
             to="/booking"
@@ -51,14 +52,15 @@ export function SiteHeader() {
         <div className="border-t border-border md:hidden">
           <div className="container-prose flex flex-col gap-4 py-6">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
+              <Link
+                key={l.hash}
+                to="/"
+                hash={l.hash}
                 onClick={() => setOpen(false)}
                 className="text-base font-medium text-foreground"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
             <Link
               to="/booking"
