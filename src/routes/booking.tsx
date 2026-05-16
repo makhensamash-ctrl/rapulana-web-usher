@@ -44,11 +44,11 @@ function getNextWeekdays(count: number) {
 }
 
 function fmtDateLong(d: Date) {
-  return d.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  return d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 }
 
 function fmtDayShort(d: Date) {
-  return d.toLocaleDateString(undefined, { weekday: "short" });
+  return d.toLocaleDateString("en-GB", { weekday: "short" });
 }
 
 function BookingPage() {
