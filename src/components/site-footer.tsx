@@ -26,7 +26,7 @@ export function SiteFooter() {
           <ul className="space-y-2 text-sm text-primary-foreground/80">
             <li>353 Festival Street</li>
             <li>Hatfield, Pretoria</li>
-            <li>+27 11 555 0142</li>
+            <li>063 936 8865</li>
             <li>rethabile@rapulana.co.za</li>
           </ul>
         </div>
