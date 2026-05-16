@@ -84,7 +84,15 @@ function HomePage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-primary/40 to-transparent" />
-        <div className="container-prose relative py-48 md:py-72" />
+        <div className="container-prose relative flex justify-end pt-6 md:pt-8">
+          <Link
+            to="/booking"
+            className="inline-flex items-center gap-2 rounded-sm bg-secondary px-5 py-2.5 text-sm font-semibold text-secondary-foreground shadow-sm transition hover:bg-secondary/90"
+          >
+            Book a Consultation
+          </Link>
+        </div>
+        <div className="container-prose relative py-40 md:py-64" />
       </section>
 
 
