@@ -179,9 +179,9 @@ function HomePage() {
               />
             </div>
           </div>
-          <div className="mt-14 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map(({ icon: Icon, title, desc, items }) => (
-              <article key={title} className="flex flex-col bg-background p-10 transition hover:bg-secondary/5">
+              <article key={title} className="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
                 <Icon className="h-9 w-9 text-secondary" strokeWidth={1.5} />
                 <h3 className="mt-6 text-2xl text-primary">{title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{desc}</p>
