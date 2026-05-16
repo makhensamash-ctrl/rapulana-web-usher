@@ -313,7 +313,7 @@ function ContactSection() {
   const items = [
     { icon: MapPin, title: "Office", lines: ["353 Festival Street", "Hatfield", "Pretoria, 0083"] },
     { icon: Phone, title: "Telephone", lines: ["+27 11 555 0142", "+27 82 555 0142 (urgent)"] },
-    { icon: Mail, title: "Email", lines: ["hello@rapulana.law", "litigation@rapulana.law"] },
+    { icon: Mail, title: "Email", lines: ["rethabile@rapulana.co.za", "litigation@rapulana.law"] },
     { icon: Clock, title: "Hours", lines: ["Mon – Fri · 08:00 – 17:30", "Sat · by appointment"] },
   ];
   return (
