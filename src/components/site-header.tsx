@@ -29,12 +29,12 @@ export function SiteHeader() {
               {l.label}
             </a>
           ))}
-          <a
-            href="#booking"
+          <Link
+            to="/booking"
             className="inline-flex items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
           >
             Book a Consultation
-          </a>
+          </Link>
         </nav>
 
         <button
