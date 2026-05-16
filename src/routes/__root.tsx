@@ -75,11 +75,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Rapulana Attorneys — Trusted Legal Counsel in South Africa" },
       { name: "description", content: "Rapulana Attorneys is a boutique South African law firm offering corporate, commercial, family and litigation services with precision and integrity." },
       { name: "author", content: "Rapulana Attorneys" },
-      { property: "og:title", content: "Rapulana Attorneys — Trusted Legal Counsel" },
-      { property: "og:description", content: "Boutique South African law firm. Corporate, commercial, family and litigation services." },
+      { property: "og:title", content: "Rapulana Attorneys — Trusted Legal Counsel in South Africa" },
+      { property: "og:description", content: "Rapulana Attorneys is a boutique South African law firm offering corporate, commercial, family and litigation services with precision and integrity." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Rapulana Attorneys — Trusted Legal Counsel in South Africa" },
+      { name: "twitter:description", content: "Rapulana Attorneys is a boutique South African law firm offering corporate, commercial, family and litigation services with precision and integrity." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/790e8530-d2f8-4059-9358-ce62c62b34f2/id-preview-de7165d1--08b75cb0-3fe6-4b6a-812b-3ebcd0583ada.lovable.app-1778927979195.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/790e8530-d2f8-4059-9358-ce62c62b34f2/id-preview-de7165d1--08b75cb0-3fe6-4b6a-812b-3ebcd0583ada.lovable.app-1778927979195.png" },
     ],
     links: [
       {
