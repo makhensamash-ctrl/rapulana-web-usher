@@ -86,29 +86,7 @@ function HomePage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-primary/40 to-transparent" />
-        <div className="container-prose relative grid gap-10 py-28 md:grid-cols-12 md:py-40">
-          <div className="md:col-span-8">
-            <p className="eyebrow text-gold">Est. 2008 · Johannesburg</p>
-            <h1 className="mt-5 text-5xl leading-[1.05] md:text-7xl">
-              Counsel built on
-              <span className="block text-gold">conviction & care.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-lg text-primary-foreground/80">
-              Rapulana Attorneys partners with founders, families and
-              corporates to navigate the law with clarity — from the
-              boardroom to the bench.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a href="#booking" className="group inline-flex items-center gap-2 rounded-sm bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground transition hover:bg-gold/90">
-                Book a consultation
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </a>
-              <a href="#services" className="inline-flex items-center gap-2 rounded-sm border border-primary-foreground/30 px-6 py-3 text-sm font-semibold hover:bg-primary-foreground/10">
-                Our practice areas
-              </a>
-            </div>
-          </div>
-        </div>
+        <div className="container-prose relative py-28 md:py-40" />
       </section>
 
 
