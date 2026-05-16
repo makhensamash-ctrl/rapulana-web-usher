@@ -6,7 +6,7 @@ import {
   Mail, Phone, MapPin, Clock, CheckCircle2, Wallet, Lightbulb, Coins,
 } from "lucide-react";
 import heroLaptop from "@/assets/hero-laptop.jpg";
-import teamMeeting from "@/assets/team-meeting.jpg";
+import rapulanaLabel from "@/assets/rapulana-label.jpg";
 import fileClipboard from "@/assets/file-clipboard.jpg";
 import rethabilePortrait from "@/assets/rethabile-rapulana.jpeg";
 import rethabilePortrait2 from "@/assets/rethabile-portrait-2.jpeg";
