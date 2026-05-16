@@ -136,10 +136,10 @@ function BookingPage() {
 
   if (confirmed) {
     return (
-      <section className="container-prose py-24">
-        <div className="mx-auto max-w-2xl rounded-sm border border-secondary/30 bg-secondary/5 p-10 text-center">
+      <section className="container-prose py-16 md:py-24">
+        <div className="mx-auto max-w-2xl rounded-sm border border-secondary/30 bg-secondary/5 p-6 text-center sm:p-10">
           <CheckCircle2 className="mx-auto h-12 w-12 text-secondary" />
-          <h1 className="mt-6 text-4xl text-primary">Booking received</h1>
+          <h1 className="mt-6 text-3xl text-primary sm:text-4xl">Booking received</h1>
           <p className="mt-4 text-muted-foreground">
             Thank you, {confirmed.name}. We've reserved <span className="font-semibold text-primary">{confirmed.date} at {confirmed.time}</span>.
             Our team will email you shortly with payment instructions (R{HOURLY_RATE}) to confirm the consultation.
@@ -158,11 +158,11 @@ function BookingPage() {
         <ArrowLeft className="h-4 w-4" /> Back
       </Link>
 
-      <div className="mt-6 grid gap-10 md:grid-cols-12">
+      <div className="mt-6 grid gap-8 md:grid-cols-12 md:gap-10">
         {/* Sidebar */}
         <aside className="md:col-span-4">
           <p className="eyebrow">Rapulana Attorneys</p>
-          <h1 className="mt-3 text-3xl text-primary md:text-4xl">Book a Consultation</h1>
+          <h1 className="mt-3 text-3xl text-primary sm:text-4xl">Book a Consultation</h1>
           <div className="mt-6 space-y-4 text-sm text-muted-foreground">
             <div className="flex items-start gap-3">
               <Clock className="mt-0.5 h-5 w-5 text-secondary" />
@@ -251,7 +251,7 @@ function BookingPage() {
           </div>
 
           {/* Details form */}
-          <form onSubmit={onSubmit} noValidate className="space-y-5 rounded-sm border border-border bg-card p-6 md:p-8">
+          <form onSubmit={onSubmit} noValidate className="space-y-5 rounded-sm border border-border bg-card p-4 sm:p-6 md:p-8">
             <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">3. Your details</h2>
             <div className="grid gap-5 md:grid-cols-2">
               <Field label="Full name" name="client_name" error={errors.client_name} />
@@ -263,7 +263,7 @@ function BookingPage() {
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60 sm:w-auto sm:px-8"
             >
               {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
               Confirm Booking · R{HOURLY_RATE}
