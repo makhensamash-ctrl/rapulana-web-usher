@@ -251,7 +251,7 @@ function BookingPage() {
           </div>
 
           {/* Details form */}
-          <form onSubmit={onSubmit} noValidate className="space-y-5 rounded-sm border border-border bg-card p-6 md:p-8">
+          <form onSubmit={onSubmit} noValidate className="space-y-5 rounded-sm border border-border bg-card p-4 sm:p-6 md:p-8">
             <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">3. Your details</h2>
             <div className="grid gap-5 md:grid-cols-2">
               <Field label="Full name" name="client_name" error={errors.client_name} />
@@ -263,7 +263,7 @@ function BookingPage() {
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60 sm:w-auto sm:px-8"
             >
               {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
               Confirm Booking · R{HOURLY_RATE}
