@@ -4,10 +4,10 @@ import { Menu, X } from "lucide-react";
 import logoDark from "@/assets/logo-dark.jpeg";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#team", label: "Team" },
-  { href: "#contact", label: "Contact" },
+  { hash: "about", label: "About" },
+  { hash: "services", label: "Services" },
+  { hash: "team", label: "Team" },
+  { hash: "contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
