@@ -136,7 +136,7 @@ function BookingPage() {
 
   if (confirmed) {
     return (
-      <section className="container-prose py-24">
+      <section className="container-prose py-16 md:py-24">
         <div className="mx-auto max-w-2xl rounded-sm border border-secondary/30 bg-secondary/5 p-6 text-center sm:p-10">
           <CheckCircle2 className="mx-auto h-12 w-12 text-secondary" />
           <h1 className="mt-6 text-3xl text-primary sm:text-4xl">Booking received</h1>
