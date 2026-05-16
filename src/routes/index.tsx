@@ -6,7 +6,7 @@ import {
   Mail, Phone, MapPin, Clock, CheckCircle2, Wallet, Lightbulb, Coins,
 } from "lucide-react";
 import heroLaptop from "@/assets/hero-laptop.jpg";
-import teamMeeting from "@/assets/team-meeting.jpg";
+import rapulanaLabel from "@/assets/rapulana-label.jpg";
 import fileClipboard from "@/assets/file-clipboard.jpg";
 import rethabilePortrait from "@/assets/rethabile-rapulana.jpeg";
 import rethabilePortrait2 from "@/assets/rethabile-portrait-2.jpeg";
@@ -259,8 +259,8 @@ function HomePage() {
       <section className="container-prose py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <img
-            src={teamMeeting}
-            alt="Attorneys collaborating around a conference table"
+            src={rapulanaLabel}
+            alt="Rapulana Attorneys logo on a business card"
             width={1600}
             height={1024}
             loading="lazy"
