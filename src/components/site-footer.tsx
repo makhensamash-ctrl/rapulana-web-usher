@@ -24,7 +24,7 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow mb-4 text-gold">Contact</p>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
-            <li>14th Floor, Sandton Central</li>
+            <li>rethabile@rapulana.co.za</li>
             <li>Johannesburg, 2196</li>
             <li>+27 11 555 0142</li>
             <li>hello@rapulana.law</li>
