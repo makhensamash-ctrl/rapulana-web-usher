@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, Upload } from "lucide-react";
 
-export const Route = createFileRoute("/_authenticated/admin/blogs/$id")({
+export const Route = createFileRoute("/_authenticated/admin/blogs_/$id")({
   component: BlogEditor,
 });
 
