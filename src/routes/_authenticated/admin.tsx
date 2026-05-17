@@ -7,11 +7,11 @@ export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminLayout,
 });
 
-const nav = [
+const nav: Array<{ to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }> = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { to: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
   { to: "/admin/blogs", label: "Blogs", icon: Newspaper },
-] as const;
+];
 
 function AdminLayout() {
   const auth = useAdminAuth();

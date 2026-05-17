@@ -10,12 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as BookingRouteImport } from './routes/booking'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NewsSlugRouteImport } from './routes/news.$slug'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin/bookings'
+import { Route as AuthenticatedAdminBlogsRouteImport } from './routes/_authenticated/admin/blogs'
+import { Route as AuthenticatedAdminBlogsIdRouteImport } from './routes/_authenticated/admin/blogs.$id'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingRoute = BookingRouteImport.update({
@@ -23,39 +42,136 @@ const BookingRoute = BookingRouteImport.update({
   path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NewsRoute,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminBookingsRoute =
+  AuthenticatedAdminBookingsRouteImport.update({
+    id: '/bookings',
+    path: '/bookings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminBlogsRoute = AuthenticatedAdminBlogsRouteImport.update({
+  id: '/blogs',
+  path: '/blogs',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminBlogsIdRoute =
+  AuthenticatedAdminBlogsIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AuthenticatedAdminBlogsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/booking': typeof BookingRoute
+  '/login': typeof LoginRoute
+  '/news': typeof NewsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/news/$slug': typeof NewsSlugRoute
+  '/admin/blogs': typeof AuthenticatedAdminBlogsRouteWithChildren
+  '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/blogs/$id': typeof AuthenticatedAdminBlogsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/booking': typeof BookingRoute
+  '/login': typeof LoginRoute
+  '/news': typeof NewsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/admin/blogs': typeof AuthenticatedAdminBlogsRouteWithChildren
+  '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/blogs/$id': typeof AuthenticatedAdminBlogsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/booking': typeof BookingRoute
+  '/login': typeof LoginRoute
+  '/news': typeof NewsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/news/$slug': typeof NewsSlugRoute
+  '/_authenticated/admin/blogs': typeof AuthenticatedAdminBlogsRouteWithChildren
+  '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/blogs/$id': typeof AuthenticatedAdminBlogsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/booking' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/booking'
+    | '/login'
+    | '/news'
+    | '/sitemap.xml'
+    | '/admin'
+    | '/news/$slug'
+    | '/admin/blogs'
+    | '/admin/bookings'
+    | '/admin/'
+    | '/admin/blogs/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/booking' | '/sitemap.xml'
-  id: '__root__' | '/' | '/booking' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/booking'
+    | '/login'
+    | '/news'
+    | '/sitemap.xml'
+    | '/news/$slug'
+    | '/admin/blogs'
+    | '/admin/bookings'
+    | '/admin'
+    | '/admin/blogs/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/booking'
+    | '/login'
+    | '/news'
+    | '/sitemap.xml'
+    | '/_authenticated/admin'
+    | '/news/$slug'
+    | '/_authenticated/admin/blogs'
+    | '/_authenticated/admin/bookings'
+    | '/_authenticated/admin/'
+    | '/_authenticated/admin/blogs/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   BookingRoute: typeof BookingRoute
+  LoginRoute: typeof LoginRoute
+  NewsRoute: typeof NewsRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -68,11 +184,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/booking': {
       id: '/booking'
       path: '/booking'
       fullPath: '/booking'
       preLoaderRoute: typeof BookingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -82,12 +219,108 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof NewsRoute
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/bookings': {
+      id: '/_authenticated/admin/bookings'
+      path: '/bookings'
+      fullPath: '/admin/bookings'
+      preLoaderRoute: typeof AuthenticatedAdminBookingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/blogs': {
+      id: '/_authenticated/admin/blogs'
+      path: '/blogs'
+      fullPath: '/admin/blogs'
+      preLoaderRoute: typeof AuthenticatedAdminBlogsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/blogs/$id': {
+      id: '/_authenticated/admin/blogs/$id'
+      path: '/$id'
+      fullPath: '/admin/blogs/$id'
+      preLoaderRoute: typeof AuthenticatedAdminBlogsIdRouteImport
+      parentRoute: typeof AuthenticatedAdminBlogsRoute
+    }
   }
 }
 
+interface AuthenticatedAdminBlogsRouteChildren {
+  AuthenticatedAdminBlogsIdRoute: typeof AuthenticatedAdminBlogsIdRoute
+}
+
+const AuthenticatedAdminBlogsRouteChildren: AuthenticatedAdminBlogsRouteChildren =
+  {
+    AuthenticatedAdminBlogsIdRoute: AuthenticatedAdminBlogsIdRoute,
+  }
+
+const AuthenticatedAdminBlogsRouteWithChildren =
+  AuthenticatedAdminBlogsRoute._addFileChildren(
+    AuthenticatedAdminBlogsRouteChildren,
+  )
+
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminBlogsRoute: typeof AuthenticatedAdminBlogsRouteWithChildren
+  AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminBlogsRoute: AuthenticatedAdminBlogsRouteWithChildren,
+  AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
+interface NewsRouteChildren {
+  NewsSlugRoute: typeof NewsSlugRoute
+}
+
+const NewsRouteChildren: NewsRouteChildren = {
+  NewsSlugRoute: NewsSlugRoute,
+}
+
+const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   BookingRoute: BookingRoute,
+  LoginRoute: LoginRoute,
+  NewsRoute: NewsRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
