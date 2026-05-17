@@ -68,6 +68,7 @@ export const createUser = createServerFn({ method: "POST" })
       email: data.email,
       password: data.password,
       email_confirm: true,
+      user_metadata: { must_change_password: true },
     });
     if (error) throw new Error(error.message);
     const newUserId = created.user?.id;
