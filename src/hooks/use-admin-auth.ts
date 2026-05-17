@@ -24,16 +24,18 @@ export function useAdminAuth(): AdminAuthState {
         if (!cancelled) setState({ loading: false, userId: null, email: null, isAdmin: false });
         return;
       }
-      const { data, error } = await supabase.rpc("has_role", {
-        _user_id: userId,
-        _role: "admin",
-      });
+      const { data, error } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId)
+        .eq("role", "admin")
+        .maybeSingle();
       if (cancelled) return;
       setState({
         loading: false,
         userId,
         email,
-        isAdmin: !error && data === true,
+        isAdmin: !error && data?.role === "admin",
       });
     }
 

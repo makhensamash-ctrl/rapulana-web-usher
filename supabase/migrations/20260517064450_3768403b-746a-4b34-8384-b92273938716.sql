@@ -1,0 +1,1 @@
+ALTER FUNCTION public.get_taken_slots(timestamptz, timestamptz) SECURITY INVOKER;
