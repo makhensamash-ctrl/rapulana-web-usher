@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import logoDark from "@/assets/logo-dark.jpeg";
+import { LatestArticleBanner } from "@/components/latest-article-banner";
 
 const links = [
   { hash: "about", label: "About" },
@@ -15,6 +16,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
+      <LatestArticleBanner />
       <div className="container-prose flex h-28 items-center justify-between">
         <Link to="/" className="flex items-center gap-3" aria-label="Rapulana Attorneys home">
           <img src={logoDark} alt="Rapulana Attorneys logo" className="h-20 w-auto md:h-24" />
