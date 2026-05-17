@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet, Link, useRouterState, useNavigate } from "@tanstack/react-router";
-import { LayoutDashboard, CalendarCheck, Newspaper, LogOut } from "lucide-react";
+import { LayoutDashboard, CalendarCheck, Newspaper, LogOut, UserCog } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAdminAuth } from "@/hooks/use-admin-auth";
 
