@@ -10,9 +10,6 @@ const links = [
   { hash: "contact", label: "Contact" },
 ];
 
-const routeLinks = [
-  { to: "/news", label: "News" },
-] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
