@@ -11,6 +11,7 @@ const nav: Array<{ to: string; label: string; icon: typeof LayoutDashboard; exac
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { to: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
   { to: "/admin/blogs", label: "Blogs", icon: Newspaper },
+  { to: "/admin/users", label: "Users & Roles", icon: UserCog },
 ];
 
 function AdminLayout() {
