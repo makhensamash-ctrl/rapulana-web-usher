@@ -45,6 +45,26 @@ function UsersAdmin() {
     onError: (e: Error) => toast.error(e.message),
   });
 
+  const create = useMutation({
+    mutationFn: () =>
+      createFn({
+        data: {
+          email: newEmail.trim(),
+          password: newPassword || undefined,
+          makeAdmin: newIsAdmin,
+        },
+      }),
+    onSuccess: () => {
+      toast.success("User created");
+      setShowAdd(false);
+      setNewEmail("");
+      setNewPassword("");
+      setNewIsAdmin(false);
+      qc.invalidateQueries({ queryKey: ["admin-users"] });
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
   const users = (data ?? []).filter((u) =>
     filter ? (u.email ?? "").toLowerCase().includes(filter.toLowerCase()) : true,
   );
