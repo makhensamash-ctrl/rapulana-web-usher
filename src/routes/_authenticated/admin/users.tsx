@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { ShieldCheck, ShieldOff, UserCog } from "lucide-react";
-import { listUsers, assignRole, removeRole } from "@/lib/admin-users.functions";
+import { ShieldCheck, ShieldOff, UserCog, UserPlus } from "lucide-react";
+import { listUsers, assignRole, removeRole, createUser } from "@/lib/admin-users.functions";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/admin/users")({
@@ -14,8 +14,13 @@ function UsersAdmin() {
   const fetchUsers = useServerFn(listUsers);
   const assignFn = useServerFn(assignRole);
   const removeFn = useServerFn(removeRole);
+  const createFn = useServerFn(createUser);
   const qc = useQueryClient();
   const [filter, setFilter] = useState("");
+  const [showAdd, setShowAdd] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newIsAdmin, setNewIsAdmin] = useState(false);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["admin-users"],
