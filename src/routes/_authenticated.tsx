@@ -1,4 +1,5 @@
 import { createFileRoute, Outlet, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { useAdminAuth } from "@/hooks/use-admin-auth";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -9,6 +10,15 @@ export const Route = createFileRoute("/_authenticated")({
 function AuthGate() {
   const auth = useAdminAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth.loading || !auth.userId) return;
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user?.user_metadata?.must_change_password) {
+        navigate({ to: "/change-password" });
+      }
+    });
+  }, [auth.loading, auth.userId, navigate]);
 
   async function signOut() {
     await supabase.auth.signOut();
