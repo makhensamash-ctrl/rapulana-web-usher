@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft } from "lucide-react";
 
-export const Route = createFileRoute("/news/$slug")({
+export const Route = createFileRoute("/news_/$slug")({
   head: ({ params }) => ({
     meta: [
       { title: `${params.slug.replace(/-/g, " ")} — Rapulana Attorneys` },

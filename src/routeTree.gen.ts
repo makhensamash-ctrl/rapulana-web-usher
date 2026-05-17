@@ -16,7 +16,7 @@ import { Route as ChangePasswordRouteImport } from './routes/change-password'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as NewsSlugRouteImport } from './routes/news.$slug'
+import { Route as NewsSlugRouteImport } from './routes/news_.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
@@ -59,9 +59,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsSlugRoute = NewsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => NewsRoute,
+  id: '/news_/$slug',
+  path: '/news/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
@@ -101,7 +101,7 @@ export interface FileRoutesByFullPath {
   '/booking': typeof BookingRoute
   '/change-password': typeof ChangePasswordRoute
   '/login': typeof LoginRoute
-  '/news': typeof NewsRouteWithChildren
+  '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/news/$slug': typeof NewsSlugRoute
@@ -116,7 +116,7 @@ export interface FileRoutesByTo {
   '/booking': typeof BookingRoute
   '/change-password': typeof ChangePasswordRoute
   '/login': typeof LoginRoute
-  '/news': typeof NewsRouteWithChildren
+  '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/news/$slug': typeof NewsSlugRoute
   '/admin/blogs': typeof AuthenticatedAdminBlogsRoute
@@ -132,10 +132,10 @@ export interface FileRoutesById {
   '/booking': typeof BookingRoute
   '/change-password': typeof ChangePasswordRoute
   '/login': typeof LoginRoute
-  '/news': typeof NewsRouteWithChildren
+  '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
-  '/news/$slug': typeof NewsSlugRoute
+  '/news_/$slug': typeof NewsSlugRoute
   '/_authenticated/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
@@ -182,7 +182,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/_authenticated/admin'
-    | '/news/$slug'
+    | '/news_/$slug'
     | '/_authenticated/admin/blogs'
     | '/_authenticated/admin/bookings'
     | '/_authenticated/admin/users'
@@ -196,8 +196,9 @@ export interface RootRouteChildren {
   BookingRoute: typeof BookingRoute
   ChangePasswordRoute: typeof ChangePasswordRoute
   LoginRoute: typeof LoginRoute
-  NewsRoute: typeof NewsRouteWithChildren
+  NewsRoute: typeof NewsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  NewsSlugRoute: typeof NewsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -251,12 +252,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/news/$slug': {
-      id: '/news/$slug'
-      path: '/$slug'
+    '/news_/$slug': {
+      id: '/news_/$slug'
+      path: '/news/$slug'
       fullPath: '/news/$slug'
       preLoaderRoute: typeof NewsSlugRouteImport
-      parentRoute: typeof NewsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
@@ -334,24 +335,15 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
 )
 
-interface NewsRouteChildren {
-  NewsSlugRoute: typeof NewsSlugRoute
-}
-
-const NewsRouteChildren: NewsRouteChildren = {
-  NewsSlugRoute: NewsSlugRoute,
-}
-
-const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   BookingRoute: BookingRoute,
   ChangePasswordRoute: ChangePasswordRoute,
   LoginRoute: LoginRoute,
-  NewsRoute: NewsRouteWithChildren,
+  NewsRoute: NewsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  NewsSlugRoute: NewsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
