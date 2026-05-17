@@ -68,7 +68,7 @@ function ArticlePage() {
 
       {/* BODY */}
       <section className="container-prose py-16">
-        <div className="prose prose-neutral mx-auto max-w-3xl prose-headings:text-primary prose-a:text-secondary">
+        <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-foreground/90 [&_h1]:mt-10 [&_h1]:text-3xl [&_h1]:text-primary [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:text-primary [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:text-primary [&_a]:text-secondary [&_a]:underline [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_strong]:text-primary [&_blockquote]:border-l-4 [&_blockquote]:border-secondary [&_blockquote]:pl-4 [&_blockquote]:italic [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_img]:rounded-sm">
           <ReactMarkdown>{data.content}</ReactMarkdown>
         </div>
       </section>
