@@ -1,5 +1,6 @@
-import { createFileRoute, Outlet, Link } from "@tanstack/react-router";
+import { createFileRoute, Outlet, Link, useNavigate } from "@tanstack/react-router";
 import { useAdminAuth } from "@/hooks/use-admin-auth";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated")({
   component: AuthGate,
@@ -7,6 +8,12 @@ export const Route = createFileRoute("/_authenticated")({
 
 function AuthGate() {
   const auth = useAdminAuth();
+  const navigate = useNavigate();
+
+  async function signOut() {
+    await supabase.auth.signOut();
+    navigate({ to: "/login" });
+  }
 
   if (auth.loading) {
     return (
@@ -38,12 +45,20 @@ function AuthGate() {
         <p className="mt-2 text-sm text-muted-foreground">
           Your account ({auth.email}) doesn't have admin access.
         </p>
-        <Link
-          to="/"
-          className="mt-6 inline-flex rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
-        >
-          Go home
-        </Link>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            to="/"
+            className="inline-flex rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+          >
+            Go home
+          </Link>
+          <button
+            onClick={signOut}
+            className="inline-flex rounded-sm border border-border px-5 py-2.5 text-sm font-semibold text-primary hover:bg-secondary/10"
+          >
+            Sign out
+          </button>
+        </div>
       </div>
     );
   }
