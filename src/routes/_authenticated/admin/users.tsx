@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { ShieldCheck, ShieldOff, UserCog } from "lucide-react";
-import { listUsers, assignRole, removeRole } from "@/lib/admin-users.functions";
+import { ShieldCheck, ShieldOff, UserCog, UserPlus } from "lucide-react";
+import { listUsers, assignRole, removeRole, createUser } from "@/lib/admin-users.functions";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/admin/users")({
@@ -14,8 +14,13 @@ function UsersAdmin() {
   const fetchUsers = useServerFn(listUsers);
   const assignFn = useServerFn(assignRole);
   const removeFn = useServerFn(removeRole);
+  const createFn = useServerFn(createUser);
   const qc = useQueryClient();
   const [filter, setFilter] = useState("");
+  const [showAdd, setShowAdd] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newIsAdmin, setNewIsAdmin] = useState(false);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["admin-users"],
@@ -40,6 +45,26 @@ function UsersAdmin() {
     onError: (e: Error) => toast.error(e.message),
   });
 
+  const create = useMutation({
+    mutationFn: () =>
+      createFn({
+        data: {
+          email: newEmail.trim(),
+          password: newPassword || undefined,
+          makeAdmin: newIsAdmin,
+        },
+      }),
+    onSuccess: () => {
+      toast.success("User created");
+      setShowAdd(false);
+      setNewEmail("");
+      setNewPassword("");
+      setNewIsAdmin(false);
+      qc.invalidateQueries({ queryKey: ["admin-users"] });
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
   const users = (data ?? []).filter((u) =>
     filter ? (u.email ?? "").toLowerCase().includes(filter.toLowerCase()) : true,
   );
@@ -54,7 +79,7 @@ function UsersAdmin() {
         Grant or revoke admin access for registered users.
       </p>
 
-      <div className="mt-6">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <input
           type="search"
           placeholder="Search by email…"
@@ -62,7 +87,66 @@ function UsersAdmin() {
           onChange={(e) => setFilter(e.target.value)}
           className="w-full max-w-sm rounded-sm border border-border bg-background px-3 py-2 text-sm"
         />
+        <button
+          onClick={() => setShowAdd((v) => !v)}
+          className="inline-flex items-center gap-2 rounded-sm bg-primary px-3 py-2 text-sm text-primary-foreground hover:opacity-90"
+        >
+          <UserPlus className="h-4 w-4" />
+          {showAdd ? "Cancel" : "Add user"}
+        </button>
       </div>
+
+      {showAdd && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (!newEmail.trim()) return;
+            create.mutate();
+          }}
+          className="mt-4 grid gap-3 rounded-sm border border-border bg-secondary/5 p-4 sm:grid-cols-2"
+        >
+          <label className="text-sm">
+            <span className="mb-1 block text-muted-foreground">Email</span>
+            <input
+              type="email"
+              required
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+              className="w-full rounded-sm border border-border bg-background px-3 py-2"
+            />
+          </label>
+          <label className="text-sm">
+            <span className="mb-1 block text-muted-foreground">
+              Password (min 8 chars)
+            </span>
+            <input
+              type="text"
+              minLength={8}
+              required
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="w-full rounded-sm border border-border bg-background px-3 py-2"
+            />
+          </label>
+          <label className="flex items-center gap-2 text-sm sm:col-span-2">
+            <input
+              type="checkbox"
+              checked={newIsAdmin}
+              onChange={(e) => setNewIsAdmin(e.target.checked)}
+            />
+            Grant admin role
+          </label>
+          <div className="sm:col-span-2">
+            <button
+              type="submit"
+              disabled={create.isPending}
+              className="rounded-sm bg-primary px-4 py-2 text-sm text-primary-foreground hover:opacity-90 disabled:opacity-50"
+            >
+              {create.isPending ? "Creating…" : "Create user"}
+            </button>
+          </div>
+        </form>
+      )}
 
       {isLoading && <p className="mt-6 text-sm text-muted-foreground">Loading users…</p>}
       {error && (

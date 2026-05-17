@@ -50,6 +50,41 @@ export const listUsers = createServerFn({ method: "GET" })
     }));
   });
 
+export const createUser = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input) =>
+    z
+      .object({
+        email: z.string().email(),
+        password: z.string().min(8).max(128).optional(),
+        makeAdmin: z.boolean().optional(),
+      })
+      .parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context.userId);
+
+    const { data: created, error } = await supabaseAdmin.auth.admin.createUser({
+      email: data.email,
+      password: data.password,
+      email_confirm: true,
+    });
+    if (error) throw new Error(error.message);
+    const newUserId = created.user?.id;
+    if (!newUserId) throw new Error("Failed to create user");
+
+    if (data.makeAdmin) {
+      const { error: roleError } = await supabaseAdmin
+        .from("user_roles")
+        .insert({ user_id: newUserId, role: "admin" });
+      if (roleError && !roleError.message.includes("duplicate")) {
+        throw new Error(roleError.message);
+      }
+    }
+
+    return { ok: true, userId: newUserId };
+  });
+
 export const assignRole = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) =>
