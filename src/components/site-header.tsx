@@ -10,6 +10,7 @@ const links = [
   { hash: "contact", label: "Contact" },
 ];
 
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
@@ -30,6 +31,12 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
+          <Link
+            to="/news"
+            className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            News
+          </Link>
           <Link
             to="/booking"
             className="inline-flex items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
@@ -62,6 +69,13 @@ export function SiteHeader() {
                 {l.label}
               </Link>
             ))}
+            <Link
+              to="/news"
+              onClick={() => setOpen(false)}
+              className="text-base font-medium text-foreground"
+            >
+              News
+            </Link>
             <Link
               to="/booking"
               onClick={() => setOpen(false)}
