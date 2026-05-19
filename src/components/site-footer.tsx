@@ -24,8 +24,8 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow mb-4 text-gold">Contact</p>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
-            <li>353 Festival Street</li>
-            <li>Hatfield, Pretoria</li>
+            <li>353 Festival Street, Pretoria</li>
+            <li>Hatfield</li>
             <li>073 989 7286</li>
             <li>info@rapulana.co.za</li>
           </ul>
