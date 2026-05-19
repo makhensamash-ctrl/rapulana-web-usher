@@ -24,8 +24,7 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow mb-4 text-gold">Contact</p>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
-            <li>1st Floor</li>
-            <li>HQ Hatfield</li>
+            <li>1st Floor, HQ Hatfield</li>
             <li>353 Festival Street</li>
             <li>Pretoria</li>
             <li>073 989 7286</li>
