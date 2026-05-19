@@ -118,7 +118,7 @@ function BookingPage() {
       matter: parsed.data.matter ?? null,
       starts_at: starts.toISOString(),
       ends_at: ends.toISOString(),
-      amount_cents: HOURLY_RATE * 100,
+      amount_cents: 0,
       payment_status: "pending",
     });
 
