@@ -17,7 +17,7 @@ export const Route = createFileRoute("/booking")({
 });
 
 const HOURLY_RATE = 600;
-const SLOT_HOURS = [9, 10, 11, 12, 13, 14, 15, 16];
+const SLOT_HOURS = [8, 9, 10, 11, 12, 13, 14, 15];
 
 const formSchema = z.object({
   client_name: z.string().trim().min(2, "Please enter your full name").max(100),
