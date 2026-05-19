@@ -114,6 +114,26 @@ function BookingPage() {
     const ends = new Date(starts);
     ends.setHours(starts.getHours() + 1);
 
+    let attachmentUrl: string | null = null;
+    if (attachment) {
+      if (attachment.size > MAX_ATTACHMENT_BYTES) {
+        setSubmitting(false);
+        setSubmitError("Attachment is too large. Maximum size is 10 MB.");
+        return;
+      }
+      const ext = attachment.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "") || "bin";
+      const path = `${starts.toISOString().slice(0, 10)}/${crypto.randomUUID()}.${ext}`;
+      const { error: uploadError } = await supabase.storage
+        .from("booking-attachments")
+        .upload(path, attachment, { contentType: attachment.type || undefined });
+      if (uploadError) {
+        setSubmitting(false);
+        setSubmitError("We couldn't upload your document. Please try again.");
+        return;
+      }
+      attachmentUrl = path;
+    }
+
     const { error } = await supabase.from("bookings").insert({
       client_name: parsed.data.client_name,
       client_email: parsed.data.client_email,
@@ -123,6 +143,7 @@ function BookingPage() {
       ends_at: ends.toISOString(),
       amount_cents: 0,
       payment_status: "pending",
+      attachment_url: attachmentUrl,
     });
 
     setSubmitting(false);
