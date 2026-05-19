@@ -17,7 +17,7 @@ export const Route = createFileRoute("/booking")({
 });
 
 const HOURLY_RATE = 600;
-const SLOT_HOURS = [9, 10, 11, 12, 13, 14, 15, 16];
+const SLOT_HOURS = [8, 9, 10, 11, 12, 13, 14, 15];
 
 const formSchema = z.object({
   client_name: z.string().trim().min(2, "Please enter your full name").max(100),
@@ -174,7 +174,7 @@ function BookingPage() {
             <div className="flex items-start gap-3">
               <CalendarDays className="mt-0.5 h-5 w-5 text-secondary" />
               <div>
-                <p className="font-semibold text-primary">Mon – Fri · 09:00 – 17:00</p>
+                <p className="font-semibold text-primary">Mon – Fri · 08:00 – 16:00</p>
                 <p>Choose any open slot in the next two weeks.</p>
               </div>
             </div>
