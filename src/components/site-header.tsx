@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoDark from "@/assets/logo-dark.jpeg";
+import logoDark from "@/assets/logo-transparent.png";
 import { LatestArticleBanner } from "@/components/latest-article-banner";
 
 const links = [
