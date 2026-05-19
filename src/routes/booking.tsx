@@ -261,7 +261,7 @@ function BookingPage() {
               className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60 sm:w-auto sm:px-8"
             >
               {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
-              Confirm Booking · R{HOURLY_RATE}
+              Confirm Booking
             </button>
           </form>
         </div>
