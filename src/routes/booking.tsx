@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
-import { ArrowLeft, CalendarDays, CheckCircle2, Clock, Loader2 } from "lucide-react";
+import { ArrowLeft, CalendarDays, CheckCircle2, Clock, Loader2, Paperclip, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/booking")({
@@ -61,6 +61,9 @@ function BookingPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [confirmed, setConfirmed] = useState<{ name: string; date: string; time: string } | null>(null);
+  const [attachment, setAttachment] = useState<File | null>(null);
+
+  const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024; // 10 MB
 
   // Fetch taken + blocked slots for selected date
   useEffect(() => {
@@ -111,6 +114,26 @@ function BookingPage() {
     const ends = new Date(starts);
     ends.setHours(starts.getHours() + 1);
 
+    let attachmentUrl: string | null = null;
+    if (attachment) {
+      if (attachment.size > MAX_ATTACHMENT_BYTES) {
+        setSubmitting(false);
+        setSubmitError("Attachment is too large. Maximum size is 10 MB.");
+        return;
+      }
+      const ext = attachment.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "") || "bin";
+      const path = `${starts.toISOString().slice(0, 10)}/${crypto.randomUUID()}.${ext}`;
+      const { error: uploadError } = await supabase.storage
+        .from("booking-attachments")
+        .upload(path, attachment, { contentType: attachment.type || undefined });
+      if (uploadError) {
+        setSubmitting(false);
+        setSubmitError("We couldn't upload your document. Please try again.");
+        return;
+      }
+      attachmentUrl = path;
+    }
+
     const { error } = await supabase.from("bookings").insert({
       client_name: parsed.data.client_name,
       client_email: parsed.data.client_email,
@@ -120,6 +143,7 @@ function BookingPage() {
       ends_at: ends.toISOString(),
       amount_cents: 0,
       payment_status: "pending",
+      attachment_url: attachmentUrl,
     });
 
     setSubmitting(false);
@@ -254,6 +278,55 @@ function BookingPage() {
               <Field label="Phone" name="client_phone" type="tel" error={errors.client_phone} />
             </div>
             <Field as="textarea" label="Briefly describe your matter (optional)" name="matter" error={errors.matter} />
+
+            <div>
+              <label className="block text-sm font-semibold text-foreground">
+                Attach a document (optional)
+                <span className="mt-1 block text-xs font-normal text-muted-foreground">
+                  PDF, Word, or image. Max 10 MB.
+                </span>
+              </label>
+              {attachment ? (
+                <div className="mt-2 flex items-center justify-between gap-3 rounded-sm border border-input bg-background px-4 py-2.5 text-sm">
+                  <span className="flex min-w-0 items-center gap-2 text-foreground">
+                    <Paperclip className="h-4 w-4 shrink-0 text-secondary" />
+                    <span className="truncate">{attachment.name}</span>
+                    <span className="shrink-0 text-xs text-muted-foreground">
+                      ({(attachment.size / 1024 / 1024).toFixed(2)} MB)
+                    </span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setAttachment(null)}
+                    className="shrink-0 rounded-sm p-1 text-muted-foreground transition hover:bg-muted hover:text-primary"
+                    aria-label="Remove attachment"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              ) : (
+                <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-sm border border-dashed border-input bg-background px-4 py-3 text-sm text-muted-foreground transition hover:border-secondary hover:text-primary">
+                  <Paperclip className="h-4 w-4" />
+                  <span>Choose a file</span>
+                  <input
+                    type="file"
+                    className="sr-only"
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] ?? null;
+                      if (file && file.size > MAX_ATTACHMENT_BYTES) {
+                        setSubmitError("Attachment is too large. Maximum size is 10 MB.");
+                        e.target.value = "";
+                        return;
+                      }
+                      setSubmitError(null);
+                      setAttachment(file);
+                    }}
+                  />
+                </label>
+              )}
+            </div>
+
             {submitError && <p className="text-sm text-destructive">{submitError}</p>}
             <button
               type="submit"

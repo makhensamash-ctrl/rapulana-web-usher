@@ -83,6 +83,7 @@ export type Database = {
       bookings: {
         Row: {
           amount_cents: number
+          attachment_url: string | null
           client_email: string
           client_name: string
           client_phone: string
@@ -98,6 +99,7 @@ export type Database = {
         }
         Insert: {
           amount_cents?: number
+          attachment_url?: string | null
           client_email: string
           client_name: string
           client_phone: string
@@ -113,6 +115,7 @@ export type Database = {
         }
         Update: {
           amount_cents?: number
+          attachment_url?: string | null
           client_email?: string
           client_name?: string
           client_phone?: string
