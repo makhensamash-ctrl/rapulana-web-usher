@@ -281,8 +281,6 @@ function HomePage() {
               {[
                 "Partner-led on every matter",
                 "Transparent fixed-fee engagements where possible",
-                "Multilingual: English, Sesotho, isiZulu, Afrikaans",
-                "Twenty-four hour response on urgent matters",
               ].map((p) => (
                 <li key={p} className="flex items-start gap-3">
                   <span className="mt-2 h-px w-6 bg-secondary" />
