@@ -178,11 +178,6 @@ function BookingPage() {
                 <p>Choose any open slot in the next two weeks.</p>
               </div>
             </div>
-            <div className="rounded-sm border border-border bg-background p-5">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">Fee</p>
-              <p className="mt-1 text-2xl font-semibold text-primary">R{HOURLY_RATE}<span className="text-sm font-normal text-muted-foreground"> / hour</span></p>
-              <p className="mt-2 text-xs text-muted-foreground">Payment instructions are emailed after you book.</p>
-            </div>
           </div>
         </aside>
 
