@@ -320,9 +320,9 @@ function HomePage() {
 function ContactSection() {
   const items = [
     { icon: MapPin, title: "Office", lines: ["353 Festival Street", "Hatfield", "Pretoria, 0083"] },
-    { icon: Phone, title: "Telephone", lines: ["063 936 8865"] },
-    { icon: Mail, title: "Email", lines: ["rethabile@rapulana.co.za", "info@rapulana.co.za"] },
-    { icon: Clock, title: "Hours", lines: ["Mon – Fri · 08:00 – 17:30", "Sat · by appointment"] },
+    { icon: Phone, title: "Telephone", lines: ["073 989 7286"] },
+    { icon: Mail, title: "Email", lines: ["info@rapulana.co.za"] },
+    { icon: Clock, title: "Hours", lines: ["Mon – Fri · 08:00 – 16:00", "Sat · by appointment"] },
   ];
   return (
     <section id="contact" className="scroll-mt-24 border-y border-border bg-secondary/5">
