@@ -16,7 +16,7 @@ export const Route = createFileRoute("/booking")({
   component: BookingPage,
 });
 
-const HOURLY_RATE = 600;
+
 const SLOT_HOURS = [8, 9, 10, 11, 12, 13, 14, 15];
 
 const formSchema = z.object({
@@ -118,7 +118,7 @@ function BookingPage() {
       matter: parsed.data.matter ?? null,
       starts_at: starts.toISOString(),
       ends_at: ends.toISOString(),
-      amount_cents: HOURLY_RATE * 100,
+      amount_cents: 0,
       payment_status: "pending",
     });
 
@@ -142,7 +142,7 @@ function BookingPage() {
           <h1 className="mt-6 text-3xl text-primary sm:text-4xl">Booking received</h1>
           <p className="mt-4 text-muted-foreground">
             Thank you, {confirmed.name}. We've reserved <span className="font-semibold text-primary">{confirmed.date} at {confirmed.time}</span>.
-            Our team will email you shortly with payment instructions (R{HOURLY_RATE}) to confirm the consultation.
+            Our team will email you shortly to confirm the consultation.
           </p>
           <Link to="/" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
             <ArrowLeft className="h-4 w-4" /> Back to home
@@ -177,11 +177,6 @@ function BookingPage() {
                 <p className="font-semibold text-primary">Mon – Fri · 08:00 – 16:00</p>
                 <p>Choose any open slot in the next two weeks.</p>
               </div>
-            </div>
-            <div className="rounded-sm border border-border bg-background p-5">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">Fee</p>
-              <p className="mt-1 text-2xl font-semibold text-primary">R{HOURLY_RATE}<span className="text-sm font-normal text-muted-foreground"> / hour</span></p>
-              <p className="mt-2 text-xs text-muted-foreground">Payment instructions are emailed after you book.</p>
             </div>
           </div>
         </aside>
@@ -266,7 +261,7 @@ function BookingPage() {
               className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60 sm:w-auto sm:px-8"
             >
               {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
-              Confirm Booking · R{HOURLY_RATE}
+              Confirm Booking
             </button>
           </form>
         </div>
