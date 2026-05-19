@@ -278,6 +278,55 @@ function BookingPage() {
               <Field label="Phone" name="client_phone" type="tel" error={errors.client_phone} />
             </div>
             <Field as="textarea" label="Briefly describe your matter (optional)" name="matter" error={errors.matter} />
+
+            <div>
+              <label className="block text-sm font-semibold text-foreground">
+                Attach a document (optional)
+                <span className="mt-1 block text-xs font-normal text-muted-foreground">
+                  PDF, Word, or image. Max 10 MB.
+                </span>
+              </label>
+              {attachment ? (
+                <div className="mt-2 flex items-center justify-between gap-3 rounded-sm border border-input bg-background px-4 py-2.5 text-sm">
+                  <span className="flex min-w-0 items-center gap-2 text-foreground">
+                    <Paperclip className="h-4 w-4 shrink-0 text-secondary" />
+                    <span className="truncate">{attachment.name}</span>
+                    <span className="shrink-0 text-xs text-muted-foreground">
+                      ({(attachment.size / 1024 / 1024).toFixed(2)} MB)
+                    </span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setAttachment(null)}
+                    className="shrink-0 rounded-sm p-1 text-muted-foreground transition hover:bg-muted hover:text-primary"
+                    aria-label="Remove attachment"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              ) : (
+                <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-sm border border-dashed border-input bg-background px-4 py-3 text-sm text-muted-foreground transition hover:border-secondary hover:text-primary">
+                  <Paperclip className="h-4 w-4" />
+                  <span>Choose a file</span>
+                  <input
+                    type="file"
+                    className="sr-only"
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] ?? null;
+                      if (file && file.size > MAX_ATTACHMENT_BYTES) {
+                        setSubmitError("Attachment is too large. Maximum size is 10 MB.");
+                        e.target.value = "";
+                        return;
+                      }
+                      setSubmitError(null);
+                      setAttachment(file);
+                    }}
+                  />
+                </label>
+              )}
+            </div>
+
             {submitError && <p className="text-sm text-destructive">{submitError}</p>}
             <button
               type="submit"
