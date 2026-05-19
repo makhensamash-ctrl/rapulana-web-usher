@@ -16,7 +16,7 @@ export const Route = createFileRoute("/booking")({
   component: BookingPage,
 });
 
-const HOURLY_RATE = 600;
+
 const SLOT_HOURS = [8, 9, 10, 11, 12, 13, 14, 15];
 
 const formSchema = z.object({
