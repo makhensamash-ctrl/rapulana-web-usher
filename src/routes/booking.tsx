@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
-import { ArrowLeft, CalendarDays, CheckCircle2, Clock, Loader2 } from "lucide-react";
+import { ArrowLeft, CalendarDays, CheckCircle2, Clock, Loader2, Paperclip, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/booking")({
