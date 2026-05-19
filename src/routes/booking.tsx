@@ -8,7 +8,7 @@ export const Route = createFileRoute("/booking")({
   head: () => ({
     meta: [
       { title: "Book a Consultation — Rapulana Attorneys" },
-      { name: "description", content: "Schedule a one-hour consultation with Rapulana Attorneys. Pick a date and time that suits you." },
+      { name: "description", content: "Schedule a consultation with Rapulana Attorneys. Pick a date and time that suits you." },
       { property: "og:title", content: "Book a Consultation — Rapulana Attorneys" },
       { property: "og:description", content: "Schedule a one-hour consultation with Rapulana Attorneys." },
     ],
