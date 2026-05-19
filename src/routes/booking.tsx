@@ -142,7 +142,7 @@ function BookingPage() {
           <h1 className="mt-6 text-3xl text-primary sm:text-4xl">Booking received</h1>
           <p className="mt-4 text-muted-foreground">
             Thank you, {confirmed.name}. We've reserved <span className="font-semibold text-primary">{confirmed.date} at {confirmed.time}</span>.
-            Our team will email you shortly with payment instructions (R{HOURLY_RATE}) to confirm the consultation.
+            Our team will email you shortly to confirm the consultation.
           </p>
           <Link to="/" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
             <ArrowLeft className="h-4 w-4" /> Back to home
