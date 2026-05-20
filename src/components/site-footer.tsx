@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import logoLight from "@/assets/logo-light.jpeg";
 
 export function SiteFooter() {
@@ -14,11 +15,11 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow mb-4 text-gold">Explore</p>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
-            <li><a href="#about" className="hover:text-gold">About</a></li>
-            <li><a href="#services" className="hover:text-gold">Services</a></li>
-            <li><a href="#team" className="hover:text-gold">Team</a></li>
-            <li><a href="#contact" className="hover:text-gold">Contact</a></li>
-            <li><a href="#booking" className="hover:text-gold">Book Consultation</a></li>
+            <li><Link to="/" hash="about" className="hover:text-gold">About</Link></li>
+            <li><Link to="/" hash="services" className="hover:text-gold">Services</Link></li>
+            <li><Link to="/" hash="team" className="hover:text-gold">Team</Link></li>
+            <li><Link to="/" hash="contact" className="hover:text-gold">Contact</Link></li>
+            <li><Link to="/booking" className="hover:text-gold">Book Consultation</Link></li>
           </ul>
         </div>
         <div>
