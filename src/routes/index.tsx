@@ -301,7 +301,7 @@ function HomePage() {
           <p className="eyebrow">Book a Consultation</p>
           <h2 className="mt-3 text-4xl text-primary md:text-5xl">Ready to talk?</h2>
           <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
-            Pick a date and time that suits you. One-hour consultations with a senior attorney for R600.
+            Pick a date and time that suits you. One-hour consultations with a senior attorney.
           </p>
           <Link
             to="/booking"
