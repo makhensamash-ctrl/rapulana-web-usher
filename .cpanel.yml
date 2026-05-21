@@ -1,6 +1,9 @@
 ---
 deployment:
   tasks:
+    - npm install
+    - npm run build
     - export DEPLOYPATH=/home/rapulana/public_html
-    - /bin/cp -R dist/* $DEPLOYPATH
-    - /bin/cp public/.htaccess /home/rapulana/public_html/.htaccess
+    - /bin/rm -rf "$DEPLOYPATH"/*
+    - /bin/cp -R dist/* "$DEPLOYPATH"
+    - if [ -f public/.htaccess ]; then /bin/cp public/.htaccess "$DEPLOYPATH"/.htaccess; fi
