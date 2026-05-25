@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, CalendarDays, Clock, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
@@ -18,48 +18,34 @@ const BOOKING_URL =
 
 function BookingPage() {
   return (
-    <section className="container-prose w-full max-w-full overflow-x-hidden py-16 md:py-24">
+    <section className="container-prose w-full max-w-full overflow-x-hidden py-10 md:py-16">
       <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
         <ArrowLeft className="h-4 w-4" /> Back
       </Link>
 
-      <div className="mx-auto mt-8 max-w-2xl text-center">
+      <div className="mt-6">
         <p className="eyebrow">Rapulana Attorneys</p>
-        <h1 className="mt-3 text-3xl text-primary sm:text-4xl md:text-5xl">Book a Consultation</h1>
-        <p className="mt-5 text-muted-foreground">
-          Pick a date and time that suits you. One-hour consultations with a senior attorney,
-          booked through our secure Microsoft Bookings page.
+        <h1 className="mt-3 text-3xl text-primary sm:text-4xl">Book a Consultation</h1>
+        <p className="mt-4 max-w-2xl text-muted-foreground">
+          Pick a date and time that suits you. One-hour consultations with a senior attorney.
         </p>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          <div className="flex items-start gap-3 rounded-sm border border-border bg-card p-5 text-left">
-            <Clock className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
-            <div>
-              <p className="font-semibold text-primary">60 minutes</p>
-              <p className="text-sm text-muted-foreground">Hourly consultation with a senior attorney.</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3 rounded-sm border border-border bg-card p-5 text-left">
-            <CalendarDays className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
-            <div>
-              <p className="font-semibold text-primary">Mon – Fri</p>
-              <p className="text-sm text-muted-foreground">Choose any open slot that suits you.</p>
-            </div>
-          </div>
+        <div className="mt-8 overflow-hidden rounded-sm border border-border bg-card">
+          <iframe
+            src={BOOKING_URL}
+            title="Book a consultation with Rapulana Attorneys"
+            className="h-[1400px] w-full md:h-[1200px]"
+            style={{ border: 0 }}
+            loading="lazy"
+          />
         </div>
 
-        <a
-          href={BOOKING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 sm:w-auto"
-        >
-          Open Booking Page
-          <ExternalLink className="h-4 w-4" />
-        </a>
-
-        <p className="mt-4 text-xs text-muted-foreground">
-          Opens in a new tab on outlook.office.com
+        <p className="mt-4 text-sm text-muted-foreground">
+          Trouble loading the form?{" "}
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">
+            Open the booking page in a new tab
+          </a>
+          .
         </p>
       </div>
     </section>
