@@ -96,6 +96,7 @@ export type Database = {
           payment_status: string
           starts_at: string
           updated_at: string
+          yoco_checkout_id: string | null
         }
         Insert: {
           amount_cents?: number
@@ -112,6 +113,7 @@ export type Database = {
           payment_status?: string
           starts_at: string
           updated_at?: string
+          yoco_checkout_id?: string | null
         }
         Update: {
           amount_cents?: number
@@ -128,6 +130,7 @@ export type Database = {
           payment_status?: string
           starts_at?: string
           updated_at?: string
+          yoco_checkout_id?: string | null
         }
         Relationships: []
       }
