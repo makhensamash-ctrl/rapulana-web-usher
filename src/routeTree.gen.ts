@@ -17,8 +17,11 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsSlugRouteImport } from './routes/news_.$slug'
+import { Route as BookingSuccessRouteImport } from './routes/booking.success'
+import { Route as BookingCancelledRouteImport } from './routes/booking.cancelled'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as ApiPublicYocoWebhookRouteImport } from './routes/api/public/yoco-webhook'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin/bookings'
 import { Route as AuthenticatedAdminBlogsRouteImport } from './routes/_authenticated/admin/blogs'
@@ -63,6 +66,16 @@ const NewsSlugRoute = NewsSlugRouteImport.update({
   path: '/news/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookingSuccessRoute = BookingSuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => BookingRoute,
+} as any)
+const BookingCancelledRoute = BookingCancelledRouteImport.update({
+  id: '/cancelled',
+  path: '/cancelled',
+  getParentRoute: () => BookingRoute,
+} as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -72,6 +85,11 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const ApiPublicYocoWebhookRoute = ApiPublicYocoWebhookRouteImport.update({
+  id: '/api/public/yoco-webhook',
+  path: '/api/public/yoco-webhook',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
   id: '/users',
@@ -98,30 +116,36 @@ const AuthenticatedAdminBlogsIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/booking': typeof BookingRoute
+  '/booking': typeof BookingRouteWithChildren
   '/change-password': typeof ChangePasswordRoute
   '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/booking/cancelled': typeof BookingCancelledRoute
+  '/booking/success': typeof BookingSuccessRoute
   '/news/$slug': typeof NewsSlugRoute
   '/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/public/yoco-webhook': typeof ApiPublicYocoWebhookRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/blogs/$id': typeof AuthenticatedAdminBlogsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/booking': typeof BookingRoute
+  '/booking': typeof BookingRouteWithChildren
   '/change-password': typeof ChangePasswordRoute
   '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/booking/cancelled': typeof BookingCancelledRoute
+  '/booking/success': typeof BookingSuccessRoute
   '/news/$slug': typeof NewsSlugRoute
   '/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/public/yoco-webhook': typeof ApiPublicYocoWebhookRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/blogs/$id': typeof AuthenticatedAdminBlogsIdRoute
 }
@@ -129,16 +153,19 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
-  '/booking': typeof BookingRoute
+  '/booking': typeof BookingRouteWithChildren
   '/change-password': typeof ChangePasswordRoute
   '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/booking/cancelled': typeof BookingCancelledRoute
+  '/booking/success': typeof BookingSuccessRoute
   '/news_/$slug': typeof NewsSlugRoute
   '/_authenticated/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/public/yoco-webhook': typeof ApiPublicYocoWebhookRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/blogs_/$id': typeof AuthenticatedAdminBlogsIdRoute
 }
@@ -152,10 +179,13 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/admin'
+    | '/booking/cancelled'
+    | '/booking/success'
     | '/news/$slug'
     | '/admin/blogs'
     | '/admin/bookings'
     | '/admin/users'
+    | '/api/public/yoco-webhook'
     | '/admin/'
     | '/admin/blogs/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -166,10 +196,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/news'
     | '/sitemap.xml'
+    | '/booking/cancelled'
+    | '/booking/success'
     | '/news/$slug'
     | '/admin/blogs'
     | '/admin/bookings'
     | '/admin/users'
+    | '/api/public/yoco-webhook'
     | '/admin'
     | '/admin/blogs/$id'
   id:
@@ -182,10 +215,13 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/_authenticated/admin'
+    | '/booking/cancelled'
+    | '/booking/success'
     | '/news_/$slug'
     | '/_authenticated/admin/blogs'
     | '/_authenticated/admin/bookings'
     | '/_authenticated/admin/users'
+    | '/api/public/yoco-webhook'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/blogs_/$id'
   fileRoutesById: FileRoutesById
@@ -193,12 +229,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
-  BookingRoute: typeof BookingRoute
+  BookingRoute: typeof BookingRouteWithChildren
   ChangePasswordRoute: typeof ChangePasswordRoute
   LoginRoute: typeof LoginRoute
   NewsRoute: typeof NewsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   NewsSlugRoute: typeof NewsSlugRoute
+  ApiPublicYocoWebhookRoute: typeof ApiPublicYocoWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -259,6 +296,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/booking/success': {
+      id: '/booking/success'
+      path: '/success'
+      fullPath: '/booking/success'
+      preLoaderRoute: typeof BookingSuccessRouteImport
+      parentRoute: typeof BookingRoute
+    }
+    '/booking/cancelled': {
+      id: '/booking/cancelled'
+      path: '/cancelled'
+      fullPath: '/booking/cancelled'
+      preLoaderRoute: typeof BookingCancelledRouteImport
+      parentRoute: typeof BookingRoute
+    }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
       path: '/admin'
@@ -272,6 +323,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/api/public/yoco-webhook': {
+      id: '/api/public/yoco-webhook'
+      path: '/api/public/yoco-webhook'
+      fullPath: '/api/public/yoco-webhook'
+      preLoaderRoute: typeof ApiPublicYocoWebhookRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/users': {
       id: '/_authenticated/admin/users'
@@ -335,15 +393,29 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
 )
 
+interface BookingRouteChildren {
+  BookingCancelledRoute: typeof BookingCancelledRoute
+  BookingSuccessRoute: typeof BookingSuccessRoute
+}
+
+const BookingRouteChildren: BookingRouteChildren = {
+  BookingCancelledRoute: BookingCancelledRoute,
+  BookingSuccessRoute: BookingSuccessRoute,
+}
+
+const BookingRouteWithChildren =
+  BookingRoute._addFileChildren(BookingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
-  BookingRoute: BookingRoute,
+  BookingRoute: BookingRouteWithChildren,
   ChangePasswordRoute: ChangePasswordRoute,
   LoginRoute: LoginRoute,
   NewsRoute: NewsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   NewsSlugRoute: NewsSlugRoute,
+  ApiPublicYocoWebhookRoute: ApiPublicYocoWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
