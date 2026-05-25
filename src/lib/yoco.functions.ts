@@ -3,7 +3,7 @@ import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 const YOCO_API = "https://payments.yoco.com/api";
-const CONSULTATION_FEE_CENTS = 100; // R1 (test mode)
+const CONSULTATION_FEE_CENTS = 200; // R2 (Yoco minimum for test mode)
 
 const bookingInput = z.object({
   client_name: z.string().trim().min(2).max(100),
