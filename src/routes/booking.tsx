@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
 import { ArrowLeft, CalendarDays, CheckCircle2, Clock, Loader2, Paperclip, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { createBookingAndCheckout } from "@/lib/yoco.functions";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
@@ -62,6 +64,7 @@ function BookingPage() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [confirmed, setConfirmed] = useState<{ name: string; date: string; time: string } | null>(null);
   const [attachment, setAttachment] = useState<File | null>(null);
+  const startCheckout = useServerFn(createBookingAndCheckout);
 
   const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024; // 10 MB
 
@@ -134,28 +137,27 @@ function BookingPage() {
       attachmentUrl = path;
     }
 
-    const { error } = await supabase.from("bookings").insert({
-      client_name: parsed.data.client_name,
-      client_email: parsed.data.client_email,
-      client_phone: parsed.data.client_phone,
-      matter: parsed.data.matter ?? null,
-      starts_at: starts.toISOString(),
-      ends_at: ends.toISOString(),
-      amount_cents: 0,
-      payment_status: "pending",
-      attachment_url: attachmentUrl,
-    });
-
-    setSubmitting(false);
-    if (error) {
-      setSubmitError("We couldn't create your booking. Please try another time slot.");
-      return;
+    try {
+      const { redirectUrl } = await startCheckout({
+        data: {
+          client_name: parsed.data.client_name,
+          client_email: parsed.data.client_email,
+          client_phone: parsed.data.client_phone,
+          matter: parsed.data.matter ?? null,
+          starts_at: starts.toISOString(),
+          ends_at: ends.toISOString(),
+          attachment_url: attachmentUrl,
+          origin: window.location.origin,
+        },
+      });
+      window.location.href = redirectUrl;
+    } catch (err) {
+      console.error(err);
+      setSubmitting(false);
+      setSubmitError(
+        err instanceof Error ? err.message : "We couldn't start the payment. Please try again.",
+      );
     }
-    setConfirmed({
-      name: parsed.data.client_name,
-      date: fmtDateLong(selectedDate),
-      time: `${String(selectedHour).padStart(2, "0")}:00`,
-    });
   };
 
   if (confirmed) {
