@@ -137,28 +137,34 @@ function BookingPage() {
       attachmentUrl = path;
     }
 
-    const { error } = await supabase.from("bookings").insert({
+    const { data: created, error } = await supabase.from("bookings").insert({
       client_name: parsed.data.client_name,
       client_email: parsed.data.client_email,
       client_phone: parsed.data.client_phone,
       matter: parsed.data.matter ?? null,
       starts_at: starts.toISOString(),
       ends_at: ends.toISOString(),
-      amount_cents: 0,
+      amount_cents: 200000,
       payment_status: "pending",
       attachment_url: attachmentUrl,
-    });
+    }).select("id").single();
 
-    setSubmitting(false);
-    if (error) {
+    if (error || !created) {
+      setSubmitting(false);
       setSubmitError("We couldn't create your booking. Please try another time slot.");
       return;
     }
-    setConfirmed({
-      name: parsed.data.client_name,
-      date: fmtDateLong(selectedDate),
-      time: `${String(selectedHour).padStart(2, "0")}:00`,
-    });
+
+    try {
+      const { redirectUrl } = await startCheckout({
+        data: { bookingId: created.id, origin: window.location.origin },
+      });
+      window.location.href = redirectUrl;
+    } catch (err) {
+      console.error(err);
+      setSubmitting(false);
+      setSubmitError("We created your booking but couldn't start the payment. Please contact us.");
+    }
   };
 
   if (confirmed) {
