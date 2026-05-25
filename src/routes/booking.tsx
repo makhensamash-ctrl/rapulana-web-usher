@@ -64,6 +64,7 @@ function BookingPage() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [confirmed, setConfirmed] = useState<{ name: string; date: string; time: string } | null>(null);
   const [attachment, setAttachment] = useState<File | null>(null);
+  const startCheckout = useServerFn(createYocoCheckout);
 
   const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024; // 10 MB
 
