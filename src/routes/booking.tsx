@@ -135,7 +135,9 @@ function BookingPage() {
       attachmentUrl = path;
     }
 
-    const { data: inserted, error: insertError } = await supabase.from("bookings").insert({
+    const bookingId = crypto.randomUUID();
+    const { error: insertError } = await supabase.from("bookings").insert({
+      id: bookingId,
       client_name: parsed.data.client_name,
       client_email: parsed.data.client_email,
       client_phone: parsed.data.client_phone,
@@ -144,7 +146,7 @@ function BookingPage() {
       ends_at: ends.toISOString(),
       payment_status: "pending",
       attachment_url: attachmentUrl,
-    }).select("id").single();
+    });
     setSubmitting(false);
     if (insertError) {
       console.error(insertError);
@@ -160,7 +162,7 @@ function BookingPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        bookingId: inserted?.id ?? crypto.randomUUID(),
+        bookingId,
         name: parsed.data.client_name,
         email: parsed.data.client_email,
         phone: parsed.data.client_phone,
