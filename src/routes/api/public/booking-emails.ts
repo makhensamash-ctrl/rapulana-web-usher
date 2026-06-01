@@ -20,7 +20,7 @@ const bodySchema = z.object({
 })
 
 async function enqueue(params: {
-  supabase: ReturnType<typeof createClient>
+  supabase: any
   templateName: string
   to: string
   data: Record<string, unknown>
