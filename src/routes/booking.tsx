@@ -162,7 +162,7 @@ function BookingPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        bookingId: inserted?.id ?? crypto.randomUUID(),
+        bookingId,
         name: parsed.data.client_name,
         email: parsed.data.client_email,
         phone: parsed.data.client_phone,
