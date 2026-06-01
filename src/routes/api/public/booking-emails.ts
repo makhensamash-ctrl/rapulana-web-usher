@@ -19,6 +19,32 @@ const bodySchema = z.object({
   attachmentUrl: z.string().trim().max(2000).optional().nullable(),
 })
 
+function generateToken(): string {
+  const bytes = new Uint8Array(32)
+  crypto.getRandomValues(bytes)
+  return Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+async function getOrCreateUnsubscribeToken(supabase: any, email: string): Promise<string> {
+  const normalized = email.toLowerCase()
+  const { data: existing } = await supabase
+    .from('email_unsubscribe_tokens')
+    .select('token, used_at')
+    .eq('email', normalized)
+    .maybeSingle()
+  if (existing && !existing.used_at) return existing.token
+  const token = generateToken()
+  await supabase
+    .from('email_unsubscribe_tokens')
+    .upsert({ token, email: normalized }, { onConflict: 'email', ignoreDuplicates: true })
+  const { data: stored } = await supabase
+    .from('email_unsubscribe_tokens')
+    .select('token')
+    .eq('email', normalized)
+    .maybeSingle()
+  return stored?.token ?? token
+}
+
 async function enqueue(params: {
   supabase: any
   templateName: string
@@ -37,6 +63,7 @@ async function enqueue(params: {
     typeof entry.subject === 'function' ? entry.subject(data) : entry.subject
 
   const messageId = crypto.randomUUID()
+  const unsubscribeToken = await getOrCreateUnsubscribeToken(supabase, to)
 
   await supabase.from('email_send_log').insert({
     message_id: messageId,
@@ -58,6 +85,7 @@ async function enqueue(params: {
       purpose: 'transactional',
       label: templateName,
       idempotency_key: idempotencyKey,
+      unsubscribe_token: unsubscribeToken,
       queued_at: new Date().toISOString(),
     },
   })
