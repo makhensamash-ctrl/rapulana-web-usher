@@ -135,7 +135,7 @@ function BookingPage() {
       attachmentUrl = path;
     }
 
-    const { error: insertError } = await supabase.from("bookings").insert({
+    const { data: inserted, error: insertError } = await supabase.from("bookings").insert({
       client_name: parsed.data.client_name,
       client_email: parsed.data.client_email,
       client_phone: parsed.data.client_phone,
@@ -144,17 +144,37 @@ function BookingPage() {
       ends_at: ends.toISOString(),
       payment_status: "pending",
       attachment_url: attachmentUrl,
-    });
+    }).select("id").single();
     setSubmitting(false);
     if (insertError) {
       console.error(insertError);
       setSubmitError("We couldn't submit your booking. Please try again.");
       return;
     }
+
+    const dateStr = fmtDateLong(selectedDate);
+    const timeStr = `${String(selectedHour).padStart(2, "0")}:00`;
+
+    // Fire and forget — don't block confirmation on email send
+    fetch("/api/public/booking-emails", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        bookingId: inserted?.id ?? crypto.randomUUID(),
+        name: parsed.data.client_name,
+        email: parsed.data.client_email,
+        phone: parsed.data.client_phone,
+        matter: parsed.data.matter ?? null,
+        date: dateStr,
+        time: timeStr,
+        attachmentUrl: attachmentUrl ?? null,
+      }),
+    }).catch((err) => console.error("Booking email send failed", err));
+
     setConfirmed({
       name: parsed.data.client_name,
-      date: fmtDateLong(selectedDate),
-      time: `${String(selectedHour).padStart(2, "0")}:00`,
+      date: dateStr,
+      time: timeStr,
     });
   };
 
