@@ -24,6 +24,7 @@ import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authentic
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicBookingEmailsRouteImport } from './routes/api/public/booking-emails'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
+import { Route as AuthenticatedAdminEmailsRouteImport } from './routes/_authenticated/admin/emails'
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin/bookings'
 import { Route as AuthenticatedAdminBlogsRouteImport } from './routes/_authenticated/admin/blogs'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
@@ -105,6 +106,12 @@ const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminEmailsRoute =
+  AuthenticatedAdminEmailsRouteImport.update({
+    id: '/emails',
+    path: '/emails',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminBookingsRoute =
   AuthenticatedAdminBookingsRouteImport.update({
     id: '/bookings',
@@ -154,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/news/$slug': typeof NewsSlugRoute
   '/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/admin/emails': typeof AuthenticatedAdminEmailsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/booking-emails': typeof ApiPublicBookingEmailsRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -175,6 +183,7 @@ export interface FileRoutesByTo {
   '/news/$slug': typeof NewsSlugRoute
   '/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/admin/emails': typeof AuthenticatedAdminEmailsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/booking-emails': typeof ApiPublicBookingEmailsRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -199,6 +208,7 @@ export interface FileRoutesById {
   '/news_/$slug': typeof NewsSlugRoute
   '/_authenticated/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/_authenticated/admin/emails': typeof AuthenticatedAdminEmailsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/booking-emails': typeof ApiPublicBookingEmailsRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -223,6 +233,7 @@ export interface FileRouteTypes {
     | '/news/$slug'
     | '/admin/blogs'
     | '/admin/bookings'
+    | '/admin/emails'
     | '/admin/users'
     | '/api/public/booking-emails'
     | '/lovable/email/suppression'
@@ -244,6 +255,7 @@ export interface FileRouteTypes {
     | '/news/$slug'
     | '/admin/blogs'
     | '/admin/bookings'
+    | '/admin/emails'
     | '/admin/users'
     | '/api/public/booking-emails'
     | '/lovable/email/suppression'
@@ -267,6 +279,7 @@ export interface FileRouteTypes {
     | '/news_/$slug'
     | '/_authenticated/admin/blogs'
     | '/_authenticated/admin/bookings'
+    | '/_authenticated/admin/emails'
     | '/_authenticated/admin/users'
     | '/api/public/booking-emails'
     | '/lovable/email/suppression'
@@ -402,6 +415,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/emails': {
+      id: '/_authenticated/admin/emails'
+      path: '/emails'
+      fullPath: '/admin/emails'
+      preLoaderRoute: typeof AuthenticatedAdminEmailsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/bookings': {
       id: '/_authenticated/admin/bookings'
       path: '/bookings'
@@ -450,6 +470,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBlogsRoute: typeof AuthenticatedAdminBlogsRoute
   AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
+  AuthenticatedAdminEmailsRoute: typeof AuthenticatedAdminEmailsRoute
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminBlogsIdRoute: typeof AuthenticatedAdminBlogsIdRoute
@@ -458,6 +479,7 @@ interface AuthenticatedAdminRouteChildren {
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminBlogsRoute: AuthenticatedAdminBlogsRoute,
   AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
+  AuthenticatedAdminEmailsRoute: AuthenticatedAdminEmailsRoute,
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   AuthenticatedAdminBlogsIdRoute: AuthenticatedAdminBlogsIdRoute,

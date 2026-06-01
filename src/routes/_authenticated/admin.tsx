@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet, Link, useRouterState, useNavigate } from "@tanstack/react-router";
-import { LayoutDashboard, CalendarCheck, Newspaper, LogOut, UserCog } from "lucide-react";
+import { LayoutDashboard, CalendarCheck, Newspaper, LogOut, UserCog, Mail } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAdminAuth } from "@/hooks/use-admin-auth";
 
@@ -11,6 +11,7 @@ const nav: Array<{ to: string; label: string; icon: typeof LayoutDashboard; exac
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { to: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
   { to: "/admin/blogs", label: "Blogs", icon: Newspaper },
+  { to: "/admin/emails", label: "Email Log", icon: Mail },
   { to: "/admin/users", label: "Users & Roles", icon: UserCog },
 ];
 
