@@ -42,9 +42,9 @@ export function SiteFooter() {
         <div className="container-prose flex flex-col items-center justify-between gap-3 py-6 text-xs text-primary-foreground/60 md:flex-row">
           <p>© {new Date().getFullYear()} Rapulana Attorneys Inc. All rights reserved.</p>
           <ul className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <li><a href={paiaManual.url} target="_blank" rel="noopener noreferrer" className="hover:text-gold">PAIA Manual</a></li>
-            <li><a href={disclaimer.url} target="_blank" rel="noopener noreferrer" className="hover:text-gold">Disclaimer</a></li>
-            <li><a href={privacyPolicy.url} target="_blank" rel="noopener noreferrer" className="hover:text-gold">Privacy Policy</a></li>
+            <li><Link to="/legal/paia-manual" className="hover:text-gold">PAIA Manual</Link></li>
+            <li><Link to="/legal/disclaimer" className="hover:text-gold">Disclaimer</Link></li>
+            <li><Link to="/legal/privacy-policy" className="hover:text-gold">Privacy Policy</Link></li>
           </ul>
           <p>Admitted attorneys of the High Court of South Africa.</p>
         </div>
