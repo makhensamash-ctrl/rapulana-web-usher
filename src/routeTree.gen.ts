@@ -18,6 +18,9 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsSlugRouteImport } from './routes/news_.$slug'
+import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
+import { Route as LegalPaiaManualRouteImport } from './routes/legal.paia-manual'
+import { Route as LegalDisclaimerRouteImport } from './routes/legal.disclaimer'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
@@ -74,6 +77,21 @@ const IndexRoute = IndexRouteImport.update({
 const NewsSlugRoute = NewsSlugRouteImport.update({
   id: '/news_/$slug',
   path: '/news/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyPolicyRoute = LegalPrivacyPolicyRouteImport.update({
+  id: '/legal/privacy-policy',
+  path: '/legal/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPaiaManualRoute = LegalPaiaManualRouteImport.update({
+  id: '/legal/paia-manual',
+  path: '/legal/paia-manual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalDisclaimerRoute = LegalDisclaimerRouteImport.update({
+  id: '/legal/disclaimer',
+  path: '/legal/disclaimer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
@@ -158,6 +176,9 @@ export interface FileRoutesByFullPath {
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/legal/disclaimer': typeof LegalDisclaimerRoute
+  '/legal/paia-manual': typeof LegalPaiaManualRoute
+  '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/news/$slug': typeof NewsSlugRoute
   '/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -180,6 +201,9 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/legal/disclaimer': typeof LegalDisclaimerRoute
+  '/legal/paia-manual': typeof LegalPaiaManualRoute
+  '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/news/$slug': typeof NewsSlugRoute
   '/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -205,6 +229,9 @@ export interface FileRoutesById {
   '/unsubscribe': typeof UnsubscribeRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/legal/disclaimer': typeof LegalDisclaimerRoute
+  '/legal/paia-manual': typeof LegalPaiaManualRoute
+  '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/news_/$slug': typeof NewsSlugRoute
   '/_authenticated/admin/blogs': typeof AuthenticatedAdminBlogsRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -230,6 +257,9 @@ export interface FileRouteTypes {
     | '/unsubscribe'
     | '/admin'
     | '/email/unsubscribe'
+    | '/legal/disclaimer'
+    | '/legal/paia-manual'
+    | '/legal/privacy-policy'
     | '/news/$slug'
     | '/admin/blogs'
     | '/admin/bookings'
@@ -252,6 +282,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/unsubscribe'
     | '/email/unsubscribe'
+    | '/legal/disclaimer'
+    | '/legal/paia-manual'
+    | '/legal/privacy-policy'
     | '/news/$slug'
     | '/admin/blogs'
     | '/admin/bookings'
@@ -276,6 +309,9 @@ export interface FileRouteTypes {
     | '/unsubscribe'
     | '/_authenticated/admin'
     | '/email/unsubscribe'
+    | '/legal/disclaimer'
+    | '/legal/paia-manual'
+    | '/legal/privacy-policy'
     | '/news_/$slug'
     | '/_authenticated/admin/blogs'
     | '/_authenticated/admin/bookings'
@@ -300,6 +336,9 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  LegalDisclaimerRoute: typeof LegalDisclaimerRoute
+  LegalPaiaManualRoute: typeof LegalPaiaManualRoute
+  LegalPrivacyPolicyRoute: typeof LegalPrivacyPolicyRoute
   NewsSlugRoute: typeof NewsSlugRoute
   ApiPublicBookingEmailsRoute: typeof ApiPublicBookingEmailsRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
@@ -371,6 +410,27 @@ declare module '@tanstack/react-router' {
       path: '/news/$slug'
       fullPath: '/news/$slug'
       preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy-policy': {
+      id: '/legal/privacy-policy'
+      path: '/legal/privacy-policy'
+      fullPath: '/legal/privacy-policy'
+      preLoaderRoute: typeof LegalPrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/paia-manual': {
+      id: '/legal/paia-manual'
+      path: '/legal/paia-manual'
+      fullPath: '/legal/paia-manual'
+      preLoaderRoute: typeof LegalPaiaManualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/disclaimer': {
+      id: '/legal/disclaimer'
+      path: '/legal/disclaimer'
+      fullPath: '/legal/disclaimer'
+      preLoaderRoute: typeof LegalDisclaimerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/email/unsubscribe': {
@@ -510,6 +570,9 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UnsubscribeRoute: UnsubscribeRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  LegalDisclaimerRoute: LegalDisclaimerRoute,
+  LegalPaiaManualRoute: LegalPaiaManualRoute,
+  LegalPrivacyPolicyRoute: LegalPrivacyPolicyRoute,
   NewsSlugRoute: NewsSlugRoute,
   ApiPublicBookingEmailsRoute: ApiPublicBookingEmailsRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
