@@ -25,10 +25,12 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow mb-4 text-gold">Contact</p>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
-            <li>1st Floor, HQ Hatfield</li>
-            <li>353 Festival Street</li>
+            <li>Office 6.1 East</li>
+            <li>First Floor, Brooklyn Court</li>
+            <li>361 Veale Street</li>
+            <li>Nieuw Muckleneuk</li>
             <li>Pretoria</li>
-            <li>073 989 7286</li>
+            <li>012 880 3154</li>
             <li>info@rapulana.co.za</li>
           </ul>
         </div>
