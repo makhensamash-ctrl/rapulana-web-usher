@@ -1,5 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import logoLight from "@/assets/logo-light.jpeg";
+import paiaManual from "@/assets/paia-manual.pdf.asset.json";
+import privacyPolicy from "@/assets/privacy-policy.pdf.asset.json";
+import disclaimer from "@/assets/disclaimer.pdf.asset.json";
 
 export function SiteFooter() {
   return (
