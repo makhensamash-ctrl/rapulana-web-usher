@@ -309,8 +309,8 @@ function HomePage() {
 
 function ContactSection() {
   const items = [
-    { icon: MapPin, title: "Office", lines: ["1st Floor, HQ Hatfield", "353 Festival Street", "Pretoria"] },
-    { icon: Phone, title: "Telephone", lines: ["073 989 7286"] },
+    { icon: MapPin, title: "Office", lines: ["Office 6.1 East", "First Floor, Brooklyn Court", "361 Veale Street", "Nieuw Muckleneuk", "Pretoria"] },
+    { icon: Phone, title: "Telephone", lines: ["012 880 3154"] },
     { icon: Mail, title: "Email", lines: ["info@rapulana.co.za"] },
     { icon: Clock, title: "Hours", lines: ["Mon – Fri · 08:00 – 16:00", "Sat · by appointment"] },
   ];
