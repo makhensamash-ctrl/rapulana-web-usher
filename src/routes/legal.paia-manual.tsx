@@ -50,9 +50,9 @@ function PaiaManualPage() {
                 <tbody className="[&_td]:border-t [&_td]:border-border [&_td]:p-3">
                   <tr><td className="w-1/2 bg-secondary/40 font-medium">Name of private body</td><td>R Rapulana Inc t/a Rapulana Attorneys</td></tr>
                   <tr><td className="bg-secondary/40 font-medium">Name of head of private body</td><td>Rethabile Rapulana</td></tr>
-                  <tr><td className="bg-secondary/40 font-medium">Registered street address</td><td>353 Festival Street, Hatfield, Pretoria</td></tr>
-                  <tr><td className="bg-secondary/40 font-medium">Postal address</td><td>353 Festival Street, Hatfield, Pretoria</td></tr>
-                  <tr><td className="bg-secondary/40 font-medium">Telephone number</td><td>073 989 7286</td></tr>
+                  <tr><td className="bg-secondary/40 font-medium">Registered street address</td><td>Office 6.1 East, First Floor, Brooklyn Court, 361 Veale Street, Nieuw Muckleneuk, Pretoria</td></tr>
+                  <tr><td className="bg-secondary/40 font-medium">Postal address</td><td>Office 6.1 East, First Floor, Brooklyn Court, 361 Veale Street, Nieuw Muckleneuk, Pretoria</td></tr>
+                  <tr><td className="bg-secondary/40 font-medium">Telephone number</td><td>012 880 3154</td></tr>
                   <tr><td className="bg-secondary/40 font-medium">Email address</td><td>info@rapulana.co.za</td></tr>
                   <tr><td className="bg-secondary/40 font-medium">Website</td><td>www.rapulana.co.za</td></tr>
                   <tr><td className="bg-secondary/40 font-medium">Person authorised to assist with requests</td><td>Rethabile Rapulana</td></tr>
