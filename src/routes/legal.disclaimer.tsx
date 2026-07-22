@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 
 export const Route = createFileRoute("/legal/disclaimer")({
   component: DisclaimerPage,
@@ -19,7 +17,6 @@ export const Route = createFileRoute("/legal/disclaimer")({
 function DisclaimerPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
       <main className="flex-1">
         <section className="border-b border-border bg-secondary/30">
           <div className="container-prose py-12">
@@ -281,7 +278,6 @@ function DisclaimerPage() {
           </article>
         </section>
       </main>
-      <SiteFooter />
     </div>
   );
 }
