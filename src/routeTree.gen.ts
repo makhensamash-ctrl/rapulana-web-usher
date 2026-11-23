@@ -9,55 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as NewsRouteImport } from './routes/news'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as ChangePasswordRouteImport } from './routes/change-password'
-import { Route as BookingRouteImport } from './routes/booking'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as NewsSlugRouteImport } from './routes/news_.$slug'
-import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
-import { Route as LegalPaiaManualRouteImport } from './routes/legal.paia-manual'
-import { Route as LegalDisclaimerRouteImport } from './routes/legal.disclaimer'
-import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as BookingRouteImport } from './routes/booking'
+import { Route as ChangePasswordRouteImport } from './routes/change-password'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as LegalDisclaimerRouteImport } from './routes/legal.disclaimer'
+import { Route as LegalPaiaManualRouteImport } from './routes/legal.paia-manual'
+import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
+import { Route as NewsSlugRouteImport } from './routes/news_.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
-import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
-import { Route as ApiPublicBookingEmailsRouteImport } from './routes/api/public/booking-emails'
-import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
-import { Route as AuthenticatedAdminEmailsRouteImport } from './routes/_authenticated/admin/emails'
-import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin/bookings'
 import { Route as AuthenticatedAdminBlogsRouteImport } from './routes/_authenticated/admin/blogs'
-import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
-import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
-import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
+import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin/bookings'
+import { Route as AuthenticatedAdminEmailsRouteImport } from './routes/_authenticated/admin/emails'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
+import { Route as ApiPublicBookingEmailsRouteImport } from './routes/api/public/booking-emails'
+import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as AuthenticatedAdminBlogsIdRouteImport } from './routes/_authenticated/admin/blogs_.$id'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
+import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 
-const UnsubscribeRoute = UnsubscribeRouteImport.update({
-  id: '/unsubscribe',
-  path: '/unsubscribe',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NewsRoute = NewsRouteImport.update({
-  id: '/news',
-  path: '/news',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChangePasswordRoute = ChangePasswordRouteImport.update({
-  id: '/change-password',
-  path: '/change-password',
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingRoute = BookingRouteImport.update({
@@ -65,38 +49,29 @@ const BookingRoute = BookingRouteImport.update({
   path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRoute = AuthenticatedRouteImport.update({
-  id: '/_authenticated',
+const ChangePasswordRoute = ChangePasswordRouteImport.update({
+  id: '/change-password',
+  path: '/change-password',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NewsSlugRoute = NewsSlugRouteImport.update({
-  id: '/news_/$slug',
-  path: '/news/$slug',
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LegalPrivacyPolicyRoute = LegalPrivacyPolicyRouteImport.update({
-  id: '/legal/privacy-policy',
-  path: '/legal/privacy-policy',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LegalPaiaManualRoute = LegalPaiaManualRouteImport.update({
-  id: '/legal/paia-manual',
-  path: '/legal/paia-manual',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalDisclaimerRoute = LegalDisclaimerRouteImport.update({
-  id: '/legal/disclaimer',
-  path: '/legal/disclaimer',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
-  id: '/email/unsubscribe',
-  path: '/email/unsubscribe',
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -104,47 +79,78 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
+  id: '/email/unsubscribe',
+  path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalDisclaimerRoute = LegalDisclaimerRouteImport.update({
+  id: '/legal/disclaimer',
+  path: '/legal/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPaiaManualRoute = LegalPaiaManualRouteImport.update({
+  id: '/legal/paia-manual',
+  path: '/legal/paia-manual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyPolicyRoute = LegalPrivacyPolicyRouteImport.update({
+  id: '/legal/privacy-policy',
+  path: '/legal/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/news_/$slug',
+  path: '/news/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
-const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
-  id: '/lovable/email/suppression',
-  path: '/lovable/email/suppression',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicBookingEmailsRoute = ApiPublicBookingEmailsRouteImport.update({
-  id: '/api/public/booking-emails',
-  path: '/api/public/booking-emails',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
+const AuthenticatedAdminBlogsRoute = AuthenticatedAdminBlogsRouteImport.update({
+  id: '/blogs',
+  path: '/blogs',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
-const AuthenticatedAdminEmailsRoute =
-  AuthenticatedAdminEmailsRouteImport.update({
-    id: '/emails',
-    path: '/emails',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
 const AuthenticatedAdminBookingsRoute =
   AuthenticatedAdminBookingsRouteImport.update({
     id: '/bookings',
     path: '/bookings',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
-const AuthenticatedAdminBlogsRoute = AuthenticatedAdminBlogsRouteImport.update({
-  id: '/blogs',
-  path: '/blogs',
+const AuthenticatedAdminEmailsRoute =
+  AuthenticatedAdminEmailsRouteImport.update({
+    id: '/emails',
+    path: '/emails',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
-const LovableEmailTransactionalSendRoute =
-  LovableEmailTransactionalSendRouteImport.update({
-    id: '/lovable/email/transactional/send',
-    path: '/lovable/email/transactional/send',
+const ApiPublicBookingEmailsRoute = ApiPublicBookingEmailsRouteImport.update({
+  id: '/api/public/booking-emails',
+  path: '/api/public/booking-emails',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
+  id: '/lovable/email/suppression',
+  path: '/lovable/email/suppression',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminBlogsIdRoute =
+  AuthenticatedAdminBlogsIdRouteImport.update({
+    id: '/blogs_/$id',
+    path: '/blogs/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
     getParentRoute: () => rootRouteImport,
   } as any)
 const LovableEmailTransactionalPreviewRoute =
@@ -153,17 +159,11 @@ const LovableEmailTransactionalPreviewRoute =
     path: '/lovable/email/transactional/preview',
     getParentRoute: () => rootRouteImport,
   } as any)
-const LovableEmailQueueProcessRoute =
-  LovableEmailQueueProcessRouteImport.update({
-    id: '/lovable/email/queue/process',
-    path: '/lovable/email/queue/process',
+const LovableEmailTransactionalSendRoute =
+  LovableEmailTransactionalSendRouteImport.update({
+    id: '/lovable/email/transactional/send',
+    path: '/lovable/email/transactional/send',
     getParentRoute: () => rootRouteImport,
-  } as any)
-const AuthenticatedAdminBlogsIdRoute =
-  AuthenticatedAdminBlogsIdRouteImport.update({
-    id: '/blogs_/$id',
-    path: '/blogs/$id',
-    getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -349,46 +349,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/unsubscribe': {
-      id: '/unsubscribe'
-      path: '/unsubscribe'
-      fullPath: '/unsubscribe'
-      preLoaderRoute: typeof UnsubscribeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/news': {
-      id: '/news'
-      path: '/news'
-      fullPath: '/news'
-      preLoaderRoute: typeof NewsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/change-password': {
-      id: '/change-password'
-      path: '/change-password'
-      fullPath: '/change-password'
-      preLoaderRoute: typeof ChangePasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booking': {
-      id: '/booking'
-      path: '/booking'
-      fullPath: '/booking'
-      preLoaderRoute: typeof BookingRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -398,46 +363,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/booking': {
+      id: '/booking'
+      path: '/booking'
+      fullPath: '/booking'
+      preLoaderRoute: typeof BookingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/news_/$slug': {
-      id: '/news_/$slug'
-      path: '/news/$slug'
-      fullPath: '/news/$slug'
-      preLoaderRoute: typeof NewsSlugRouteImport
+    '/change-password': {
+      id: '/change-password'
+      path: '/change-password'
+      fullPath: '/change-password'
+      preLoaderRoute: typeof ChangePasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/legal/privacy-policy': {
-      id: '/legal/privacy-policy'
-      path: '/legal/privacy-policy'
-      fullPath: '/legal/privacy-policy'
-      preLoaderRoute: typeof LegalPrivacyPolicyRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/legal/paia-manual': {
-      id: '/legal/paia-manual'
-      path: '/legal/paia-manual'
-      fullPath: '/legal/paia-manual'
-      preLoaderRoute: typeof LegalPaiaManualRouteImport
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/legal/disclaimer': {
-      id: '/legal/disclaimer'
-      path: '/legal/disclaimer'
-      fullPath: '/legal/disclaimer'
-      preLoaderRoute: typeof LegalDisclaimerRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/email/unsubscribe': {
-      id: '/email/unsubscribe'
-      path: '/email/unsubscribe'
-      fullPath: '/email/unsubscribe'
-      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -447,46 +412,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/email/unsubscribe': {
+      id: '/email/unsubscribe'
+      path: '/email/unsubscribe'
+      fullPath: '/email/unsubscribe'
+      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/disclaimer': {
+      id: '/legal/disclaimer'
+      path: '/legal/disclaimer'
+      fullPath: '/legal/disclaimer'
+      preLoaderRoute: typeof LegalDisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/paia-manual': {
+      id: '/legal/paia-manual'
+      path: '/legal/paia-manual'
+      fullPath: '/legal/paia-manual'
+      preLoaderRoute: typeof LegalPaiaManualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy-policy': {
+      id: '/legal/privacy-policy'
+      path: '/legal/privacy-policy'
+      fullPath: '/legal/privacy-policy'
+      preLoaderRoute: typeof LegalPrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news_/$slug': {
+      id: '/news_/$slug'
+      path: '/news/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/': {
       id: '/_authenticated/admin/'
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/lovable/email/suppression': {
-      id: '/lovable/email/suppression'
-      path: '/lovable/email/suppression'
-      fullPath: '/lovable/email/suppression'
-      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/booking-emails': {
-      id: '/api/public/booking-emails'
-      path: '/api/public/booking-emails'
-      fullPath: '/api/public/booking-emails'
-      preLoaderRoute: typeof ApiPublicBookingEmailsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/admin/users': {
-      id: '/_authenticated/admin/users'
-      path: '/users'
-      fullPath: '/admin/users'
-      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/emails': {
-      id: '/_authenticated/admin/emails'
-      path: '/emails'
-      fullPath: '/admin/emails'
-      preLoaderRoute: typeof AuthenticatedAdminEmailsRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/bookings': {
-      id: '/_authenticated/admin/bookings'
-      path: '/bookings'
-      fullPath: '/admin/bookings'
-      preLoaderRoute: typeof AuthenticatedAdminBookingsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/blogs': {
@@ -496,11 +461,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminBlogsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/lovable/email/transactional/send': {
-      id: '/lovable/email/transactional/send'
-      path: '/lovable/email/transactional/send'
-      fullPath: '/lovable/email/transactional/send'
-      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
+    '/_authenticated/admin/bookings': {
+      id: '/_authenticated/admin/bookings'
+      path: '/bookings'
+      fullPath: '/admin/bookings'
+      preLoaderRoute: typeof AuthenticatedAdminBookingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/emails': {
+      id: '/_authenticated/admin/emails'
+      path: '/emails'
+      fullPath: '/admin/emails'
+      preLoaderRoute: typeof AuthenticatedAdminEmailsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/api/public/booking-emails': {
+      id: '/api/public/booking-emails'
+      path: '/api/public/booking-emails'
+      fullPath: '/api/public/booking-emails'
+      preLoaderRoute: typeof ApiPublicBookingEmailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/suppression': {
+      id: '/lovable/email/suppression'
+      path: '/lovable/email/suppression'
+      fullPath: '/lovable/email/suppression'
+      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/blogs_/$id': {
+      id: '/_authenticated/admin/blogs_/$id'
+      path: '/blogs/$id'
+      fullPath: '/admin/blogs/$id'
+      preLoaderRoute: typeof AuthenticatedAdminBlogsIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/transactional/preview': {
@@ -510,19 +517,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lovable/email/queue/process': {
-      id: '/lovable/email/queue/process'
-      path: '/lovable/email/queue/process'
-      fullPath: '/lovable/email/queue/process'
-      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+    '/lovable/email/transactional/send': {
+      id: '/lovable/email/transactional/send'
+      path: '/lovable/email/transactional/send'
+      fullPath: '/lovable/email/transactional/send'
+      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/admin/blogs_/$id': {
-      id: '/_authenticated/admin/blogs_/$id'
-      path: '/blogs/$id'
-      fullPath: '/admin/blogs/$id'
-      preLoaderRoute: typeof AuthenticatedAdminBlogsIdRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
     }
   }
 }
